@@ -1,7 +1,13 @@
 debug = false
-keek = nil
+require "utils"
 
 function love.load()
+  if love.math.random() > 0.5 then
+    love.window.setTitle("babbemon reed")
+  else
+    love.window.setTitle("babbemon bleu")
+  end
+  --sprite loader stolen from bab be u, as i'm sure many other things will be
   sprites = {}
   local function addsprites(d)
     local dir = "assets/sprites"
@@ -22,7 +28,7 @@ function love.load()
         if d then
           newdir = d .. "/" .. newdir
         end
-        addsprites(file)
+        addsprites(newdir)
       end
     end
   end
@@ -30,9 +36,9 @@ function love.load()
 end
 
 function love.update(dt)
-
 end
 
 function love.draw(dt)
-  love.graphics.draw(sprites["keek"],0,0)
+  love.graphics.draw(sprites["battle/pokemon/bab_f"],530,40)
+  love.graphics.draw(sprites["battle/pokemon/keek_b"],80,160)
 end
