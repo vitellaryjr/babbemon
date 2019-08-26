@@ -39,6 +39,6 @@ function love.update(dt)
 end
 
 function love.draw(dt)
-  love.graphics.draw(sprites["battle/pokemon/bab_f"],530,40)
-  love.graphics.draw(sprites["battle/pokemon/keek_b"],80,160)
+  love.graphics.draw(sprites["battle/bab_f"],530,40)
+  love.graphics.draw(sprites["battle/keek_b"],80,160)
 end
