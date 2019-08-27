@@ -61,10 +61,7 @@ function love.load()
   poke2 = pokemon[love.math.random(1,#pokemon)]
   
   local load_end_time = love.timer.getTime()
-  print("load took "..tostring(round(load_end_time-game_start_time,4)).." seconds")
-  if load_end_time-game_start_time < 1 then
-    print("fast")
-  end
+  print("load took "..tostring(round(load_end_time-game_start_time,4)).." seconds"..(load_end_time-game_start_time < 1 and ", fast" or ""))
 end
 
 function love.update(dt)
