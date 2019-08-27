@@ -26,21 +26,21 @@ types = {
 }
 
 egg_group = {
-  monster = {},   --1,  reptilian but not draconic
-  frog = {},      --2
-  fish = {},      --3
-  aquatic = {},   --4,  describes invertebrates like squids
-  insect = {},    --5
-  bird = {},      --6
-  field = {},     --7,  most pokemon go here if they don't belong elsewhere
-  fairy = {},     --8
-  plant = {},     --9
-  humanoid = {},  --10
-  inorganic = {}, --11, rocks, metals, machines
-  amorphous = {}, --12, blob-like or otherwise abnormal
-  dragon = {},    --13
-  undead = {},    --14
-  other = {},     --15, pokemon that can't breed go here
+  monster = {},   --reptilian but not draconic
+  frog = {},      --
+  fish = {},      --
+  aquatic = {},   --describes invertebrates like squids
+  insect = {},    --
+  bird = {},      --
+  field = {},     --most pokemon go here if they don't belong elsewhere
+  fairy = {},     --
+  plant = {},     --
+  humanoid = {},  --
+  inorganic = {}, --rocks, metals, machines
+  amorphous = {}, --blob-like or otherwise abnormal
+  dragon = {},    --
+  undead = {},    --
+  cant = {},     --pokemon that can't breed go here
 }
 
 pokemon = {
@@ -68,7 +68,7 @@ pokemon = {
       hidden = nil,
     },
     egg = {
-      field = true
+      field = true,
     },
   },
   {
@@ -84,7 +84,7 @@ pokemon = {
       hidden = nil,
     },
     egg = {
-      inorganic = true
+      inorganic = true,
     },
   },
   {
@@ -100,7 +100,7 @@ pokemon = {
       hidden = nil,
     },
     egg = {
-      humanoid = true
+      humanoid = true,
     },
   },
   {
@@ -116,7 +116,23 @@ pokemon = {
       hidden = nil,
     },
     egg = {
-      undead = true
+      undead = true,
+    },
+  },
+  {
+    name = "skulnbon",
+    types = {"defeat"},
+    gendm = 0.6,
+    gendf = 0.3,
+    gaypb = 0.6,
+    catch = 120,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {
+      undead = true,
     },
   },
   {
@@ -197,7 +213,7 @@ pokemon = {
       hidden = nil,
     },
     egg = {
-      other = true,
+      cant = true,
     },
   },
 }
@@ -205,51 +221,5 @@ pokemon = {
 pokemon_index = {}
 for i,v in ipairs(pokemon) do
   pokemon_index[v.name] = i
-  --there is almost definitely a simpler way to do this but i'm bad at coding so
-  if v.egg.monster then
-    egg_group.monster[v.name] = true
-  end
-  if v.egg.frog then
-    egg_group.frog[v.name] = true
-  end
-  if v.egg.fish then
-    egg_group.fish[v.name] = true
-  end
-  if v.egg.aquatic then
-    egg_group.aquatic[v.name] = true
-  end
-  if v.egg.insect then
-    egg_group.insect[v.name] = true
-  end
-  if v.egg.bird then
-    egg_group.bird[v.name] = true
-  end
-  if v.egg.field then
-    egg_group.field[v.name] = true
-  end
-  if v.egg.fairy then
-    egg_group.fairy[v.name] = true
-  end
-  if v.egg.plant then
-    egg_group.plant[v.name] = true
-  end
-  if v.egg.humanoid then
-    egg_group.humanoid[v.name] = true
-  end
-  if v.egg.inorganic then
-    egg_group.inorganic[v.name] = true
-  end
-  if v.egg.amorphous then
-    egg_group.amorphous[v.name] = true
-  end
-  if v.egg.dragon then
-    egg_group.dragon[v.name] = true
-  end
-  if v.egg.undead then
-    egg_group.undead[v.name] = true
-  end
-  if v.egg.other then
-    egg_group.other[v.name] = true
-  end
 end
 print(dump(egg_group))
