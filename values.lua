@@ -51,7 +51,8 @@ poke = {
     types = table of the types the pokemon has. list of types above
     gendm,gendf = odds of the pokemon being a certain gender. 0.2,0.3 means that there's 20% chance of male, 30% chance of female, and 50% chance of other.
     gaypb = odds of the pokemon being gay. preference only affects breeding, and yes, gay breeding can happen
-    catch = the odds that a pokemon will be caught. an integer between 0 and 255, with 255 being very high likelihood of catching and 0 being impossible
+    catch = the odds that a pokemon will be caught. an integer between 0 and 255, with 255 being very high likelihood (not guaranteed?) of catching and 0 being impossible
+    expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
   ]]
@@ -62,6 +63,7 @@ poke = {
     gendf = 0.85,
     gaypb = 0.7,
     catch = 45,
+    expy = 64,
     able = {
       first = nil,
       second = nil,
@@ -76,6 +78,7 @@ poke = {
     gendf = 0.2,
     gaypb = 0.5,
     catch = 45,
+    expy = 64,
     able = {
       first = nil,
       second = nil,
@@ -90,6 +93,7 @@ poke = {
     gendf = 0.005,
     gaypb = 0,
     catch = 45,
+    expy = 64,
     able = {
       first = nil,
       second = nil,
@@ -155,26 +159,13 @@ poke = {
     egg = {"amorphous","undead"},
   },
   {
-    name = "oddish",
-    types = {"grass","poison"},
-    gendm = 0.5,
-    gendf = 0.5,
-    gaypb = 0.001,
-    catch = 220,
-    able = {
-      first = nil,
-      second = nil,
-      hidden = nil,
-    },
-    egg = {"plant"},
-  },
-  {
     name = "wog",
     types = {"normal"},
     gendm = 0.5,
     gendf = 0.5,
     gaypb = 0.001,
     catch = 220,
+    expy = 55,
     able = {
       first = nil,
       second = nil,
@@ -189,12 +180,28 @@ poke = {
     gendf = 0.5,
     gaypb = 0.001,
     catch = 150,
+    expy = 113,
     able = {
       first = nil,
       second = nil,
       hidden = nil,
     },
     egg = {"bird"},
+  },
+  {
+    name = "oddish",
+    types = {"grass","poison"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0.001,
+    catch = 220,
+    expy = 78,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"plant"},
   },
   {
     name = "baba",
@@ -204,6 +211,7 @@ poke = {
     gendf = 1,
     gaypb = 1,
     catch = 40,
+    expy = 64,
     able = {
       first = nil,
       second = nil,
