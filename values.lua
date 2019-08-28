@@ -25,25 +25,25 @@ types = {
   "dragon",
 }
 
---[[
+--[[ egg groups
 monster   -reptilian but not draconic
-frog      
-fish      
+frog
+fish
 aquatic   -describes invertebrates like squids
-insect    
-bird      
+insect
+bird
 field     -most pokemon go here if they don't belong elsewhere
-fairy     
-plant     
-humanoid  
+fairy
+plant
+humanoid
 inorganic -rocks, metals, machines
 amorphous -blob-like or otherwise abnormal
-dragon    
-undead    
+dragon
+undead
 cant      -pokemon that can't breed go here
 ]]
 
-pokemon = {
+poke = {
   --[[
     name = name of the pokemon, easy
     sprite = used if the sprite name is different from the name
@@ -67,9 +67,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      field = true,
-    },
+    egg = {"field"},
   },
   {
     name = "keek",
@@ -83,9 +81,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      inorganic = true,
-    },
+    egg = {"inorganic"},
   },
   {
     name = "meem",
@@ -99,9 +95,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      humanoid = true,
-    },
+    egg = {"humanoid"},
   },
   {
     name = "skul",
@@ -115,9 +109,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      undead = true,
-    },
+    egg = {"undead"},
   },
   {
     name = "skulnbon",
@@ -131,9 +123,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      undead = true,
-    },
+    egg = {"undead"},
   },
   {
     name = "kirb",
@@ -162,10 +152,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      amorphous = true,
-      undead = true,
-    },
+    egg = {"amorphous","undead"},
   },
   {
     name = "oddish",
@@ -179,9 +166,7 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      plant = true,
-    },
+    egg = {"plant"},
   },
   {
     name = "wog",
@@ -195,11 +180,9 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      bird = true,
-    },
+    egg = {"bird"},
   },
-  --[[
+  {
     name = "wogotch",
     types = {"normal"},
     gendm = 0.5,
@@ -211,10 +194,8 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      bird = true,
-    },
-  ]]
+    egg = {"bird"},
+  },
   {
     name = "baba",
     anim = true,
@@ -228,13 +209,11 @@ pokemon = {
       second = nil,
       hidden = nil,
     },
-    egg = {
-      cant = true,
-    },
+    egg = {"cant"},
   },
 }
 
-pokemon_index = {}
-for i,v in ipairs(pokemon) do
-  pokemon_index[v.name] = i
+pokedex_i = {}
+for i,v in ipairs(poke) do
+  pokedex_i[v.name] = i
 end

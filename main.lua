@@ -1,6 +1,7 @@
 debug = false
 require "utils"
 require "values"
+require "func"
 
 local poke1,poke2
 
@@ -57,8 +58,8 @@ function love.load()
     end
   end
   addsprites()
-  poke1 = pokemon[love.math.random(1,#pokemon)]
-  poke2 = pokemon[love.math.random(1,#pokemon)]
+  poke1 = poke[love.math.random(1,#poke)]
+  poke2 = poke[love.math.random(1,#poke)]
   
   local load_end_time = love.timer.getTime()
   print("load took "..tostring(round(load_end_time-game_start_time,4)).." seconds"..(load_end_time-game_start_time < 1 and ", fast" or ""))
