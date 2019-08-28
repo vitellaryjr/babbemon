@@ -25,23 +25,23 @@ types = {
   "dragon",
 }
 
-egg_group = {
-  monster = {},   --reptilian but not draconic
-  frog = {},      --
-  fish = {},      --
-  aquatic = {},   --describes invertebrates like squids
-  insect = {},    --
-  bird = {},      --
-  field = {},     --most pokemon go here if they don't belong elsewhere
-  fairy = {},     --
-  plant = {},     --
-  humanoid = {},  --
-  inorganic = {}, --rocks, metals, machines
-  amorphous = {}, --blob-like or otherwise abnormal
-  dragon = {},    --
-  undead = {},    --
-  cant = {},     --pokemon that can't breed go here
-}
+--[[
+monster   -reptilian but not draconic
+frog      
+fish      
+aquatic   -describes invertebrates like squids
+insect    
+bird      
+field     -most pokemon go here if they don't belong elsewhere
+fairy     
+plant     
+humanoid  
+inorganic -rocks, metals, machines
+amorphous -blob-like or otherwise abnormal
+dragon    
+undead    
+cant      -pokemon that can't breed go here
+]]
 
 pokemon = {
   --[[
@@ -238,4 +238,3 @@ pokemon_index = {}
 for i,v in ipairs(pokemon) do
   pokemon_index[v.name] = i
 end
-print(dump(egg_group))
