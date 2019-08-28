@@ -168,6 +168,22 @@ pokemon = {
     },
   },
   {
+    name = "oddish",
+    types = {"grass","poison"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0.001,
+    catch = 220,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {
+      plant = true,
+    },
+  },
+  {
     name = "wog",
     types = {"normal"},
     gendm = 0.5,
