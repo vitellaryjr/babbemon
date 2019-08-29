@@ -1,3 +1,5 @@
+--usage: types[attack type][opponent type 1] * types[attack type][opponent type 2]
+--eg: types["psychic"]["you"] * types["psychic"]["fighting"] = 0.5*2 = 1
 types = {
   you = {
     you = 1,
@@ -414,7 +416,7 @@ types = {
     dragon = 1,
   },
   psychic = {
-    you = 1,
+    you = 0.5,
     defeat = 1,
     push = 1,
     grass = 1,
@@ -511,7 +513,7 @@ poke = {
     gendm,gendf = odds of the pokemon being a certain gender. 0.2,0.3 means that there's 20% chance of male, 30% chance of female, and 50% chance of other.
     gaypb = odds of the pokemon being gay. preference only affects breeding, and yes, gay breeding can happen
     catch = the odds that a pokemon will be caught. an integer between 0 and 255, with 255 being very high likelihood (not guaranteed?) of catching and 0 being impossible
-    expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255
+    expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255. https://textuploader.com/atre4
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
     growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
@@ -520,10 +522,42 @@ poke = {
     name = "bab",
     types = {"you"},
     gendm = 0.1,
-    gendf = 0.85,
+    gendf = 0.88,
     gaypb = 0.7,
     catch = 45,
     expy = 64,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+  },
+  {
+    name = "babi",
+    types = {"you","psychic"},
+    gendm = 0.1,
+    gendf = 0.88,
+    gaypb = 0.7,
+    catch = 45,
+    expy = 141,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+  },
+  {
+    name = "babber",
+    types = {"you","psychic"},
+    gendm = 0.1,
+    gendf = 0.88,
+    gaypb = 0.7,
+    catch = 45,
+    expy = 208,
     able = {
       first = nil,
       second = nil,
