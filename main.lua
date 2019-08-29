@@ -76,6 +76,22 @@ function love.draw(dt)
     anim_stage = (anim_stage+1)%3
     anim_timer = anim_timer-0.2
   end
-  love.graphics.draw(sprites["battle/"..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")],530,40)
-  love.graphics.draw(sprites["battle/"..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")],80,160)
+  local p1draw = sprites["battle/"..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")]
+  local p2draw = sprites["battle/"..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")]
+  local p1w = p1draw:getWidth()
+  local p2w = p2draw:getWidth()
+  local p1h = p1draw:getHeight()
+  local p2h = p2draw:getHeight()
+  
+  love.graphics.setColor(0.8,0.8,0.8,1)
+  love.graphics.setLineWidth(4)
+  love.graphics.setLineStyle("rough")
+  --[[
+  love.graphics.ellipse("line",600,150,150,75)
+  love.graphics.ellipse("line",175,250,150,75)
+  ]]
+  
+  love.graphics.setColor(1,1,1,1)
+  love.graphics.draw(p1draw,600-p1w/2,150-3*p1h/4)
+  love.graphics.draw(p2draw,175-p2w/2,250-3*p2h/4)
 end
