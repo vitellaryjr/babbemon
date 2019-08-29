@@ -58,11 +58,14 @@ function love.load()
     end
   end
   addsprites()
+  if love.window.setIcon(love.image.newImageData("assets/sprites/icon.png")) then
+    print("icon changed")
+  end
   poke1 = poke[love.math.random(1,#poke)]
   poke2 = poke[love.math.random(1,#poke)]
   
   local load_end_time = love.timer.getTime()
-  print("load took "..tostring(round(load_end_time-game_start_time,4)).." seconds"..(load_end_time-game_start_time < 1 and ", fast" or ""))
+  print("load took "..tostring(round(load_end_time-game_start_time,4)).." seconds, "..(load_end_time-game_start_time < 1 and "fast" or "slow"))
 end
 
 function love.update(dt)
@@ -90,7 +93,6 @@ function love.draw(dt)
   love.graphics.ellipse("line",600,150,150,75)
   love.graphics.ellipse("line",175,250,150,75)
   ]]
-  
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(p1draw,600-p1w/2,150-3*p1h/4)
   love.graphics.draw(p2draw,175-p2w/2,250-3*p2h/4)

@@ -514,6 +514,7 @@ poke = {
     expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
+    growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
   ]]
   {
     name = "bab",
@@ -529,6 +530,7 @@ poke = {
       hidden = nil,
     },
     egg = {"field"},
+    growth = "medium_slow",
   },
   {
     name = "keek",
@@ -544,6 +546,7 @@ poke = {
       hidden = nil,
     },
     egg = {"inorganic"},
+    growth = "medium_slow",
   },
   {
     name = "meem",
@@ -559,6 +562,7 @@ poke = {
       hidden = nil,
     },
     egg = {"humanoid"},
+    growth = "medium_slow",
   },
   {
     name = "skul",
@@ -573,6 +577,7 @@ poke = {
       hidden = nil,
     },
     egg = {"undead"},
+    growth = "medium_slow",
   },
   {
     name = "skulnbon",
@@ -587,6 +592,7 @@ poke = {
       hidden = nil,
     },
     egg = {"undead"},
+    growth = "medium_slow",
   },
   {
     name = "kirb",
@@ -600,7 +606,8 @@ poke = {
       second = nil,
       hidden = nil,
     },
-    egg = {},
+    egg = {"amorphous","humanoid"},
+    growth = "fast",
   },
   {
     name = "ghost fren",
@@ -616,6 +623,7 @@ poke = {
       hidden = nil,
     },
     egg = {"amorphous","undead"},
+    growth = "medium_fast",
   },
   {
     name = "wog",
@@ -631,6 +639,7 @@ poke = {
       hidden = nil,
     },
     egg = {"bird"},
+    growth = "medium_slow",
   },
   {
     name = "wogotch",
@@ -646,13 +655,14 @@ poke = {
       hidden = nil,
     },
     egg = {"bird"},
+    growth = "medium_slow",
   },
   {
     name = "oddish",
     types = {"grass","poison"},
     gendm = 0.5,
     gendf = 0.5,
-    gaypb = 0.001,
+    gaypb = 0,
     catch = 220,
     expy = 78,
     able = {
@@ -661,6 +671,7 @@ poke = {
       hidden = nil,
     },
     egg = {"plant"},
+    growth = "medium_slow",
   },
   {
     name = "baba",
@@ -677,6 +688,7 @@ poke = {
       hidden = nil,
     },
     egg = {"cant"},
+    growth = "slow",
   },
 }
 
