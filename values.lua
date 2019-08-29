@@ -486,6 +486,30 @@ types = {
   },
 }
 
+type_colors = {
+  you = {1,0,.525},
+  push = {.686,.443,.267},
+  defeat = {.482,.047,0},
+  grass = {.29,.698,.271},
+  fire = {1,.208,.122},
+  water = {.275,.478,.918},
+  electric = {1,.871,.227},
+  ice = {.698,.827,.957},
+  ground = {.62,.365,.184},
+  rock = {.918,.510,.275},
+  flying = {.29,.976,.851},
+  poison = {.71,.282,.796},
+  normal = {1,1,1},
+  ghost = {.482,.353,.808},
+  dark = {.275,.275,.318},
+  steel = {.678,.71,.71},
+  fairy = {1,.561,.776},
+  fighting = {.6,.11,0},
+  psychic = {.937,.545,.91},
+  bug = {.639,.757,.22},
+  dragon = {.392,.22,.878},
+}
+
 --[[ egg groups
 monster   -reptilian but not draconic
 frog
@@ -731,26 +755,32 @@ for i,v in ipairs(poke) do
   pokedex_i[v.name] = i
 end
 
-type_colors = {
-  you = {1,0,.525},
-  push = {.686,.443,.267},
-  defeat = {.482,.047,0},
-  grass = {.29,.698,.271},
-  fire = {1,.208,.122},
-  water = {.275,.478,.918},
-  electric = {1,.871,.227},
-  ice = {.698,.827,.957},
-  ground = {.62,.365,.184},
-  rock = {.918,.510,.275},
-  flying = {.29,.976,.851},
-  poison = {.71,.282,.796},
-  normal = {1,1,1},
-  ghost = {.482,.353,.808},
-  dark = {.275,.275,.318},
-  steel = {.678,.71,.71},
-  fairy = {1,.561,.776},
-  fighting = {.6,.11,0},
-  psychic = {.937,.545,.91},
-  bug = {.639,.757,.22},
-  dragon = {.392,.22,.878},
+attacks = {
+  --[[
+    atype = type that the move is
+    cat = damage category, options are "physical", "special" and "status"
+    pp = normal pp that the move has
+    maxpp = max pp that the move can achieve using PP Up or PP Max
+    power = influences the amount of damage the move deals. set as -1 for moves that don't do damage
+    accur = chance of the attack hitting, from 1-100
+    contact = boolean that says whether the attack touches the opponent
+    protect = boolean that says whether the attack is affected by protect
+    magiccoat =  "      "   "      "     "    "     "     "     " magic coat
+    snatch =     "      "   "      "     "    "     "     "     " snatch
+    mirror =     "      "   "      "     "    "     "     "     " mirror move
+    kingrock =   "      "   "      "     "    "     "     "     " king's rock
+    tm,hm,tutor = boolean that states that the move is learned via tm / hm / move tutor
+  ]]
+  tackle = {
+    atype = "normal",
+    cat = "physical",
+    pp = 35,
+    maxpp = 52,
+    power = 40,
+    accur = 100,
+    contact = true,
+    protect = true,
+    mirror = true,
+    kingrock = true,
+  },
 }
