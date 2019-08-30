@@ -2,19 +2,19 @@
 --eg: types["psychic"]["you"] * types["psychic"]["fighting"] = 0.5*2 = 1
 types = {
   you = {
-    you = 1,
+    you = 0.5,
     defeat = 1,
     push = 2,
     grass = 1,
     fire = 1,
     water = 1,
     electric = 1,
-    ice = 1,
+    ice = 0.5,
     ground = 1,
-    rock = 1,
+    rock = 2,
     flying = 1,
     poison = 1,
-    normal = 1,
+    normal = 0.5,
     ghost = 1,
     dark = 1,
     steel = 1,
@@ -27,7 +27,7 @@ types = {
   defeat = {
     you = 2,
     defeat = 1,
-    push = 1,
+    push = 0.5,
     grass = 1,
     fire = 1,
     water = 1,
@@ -36,7 +36,7 @@ types = {
     ground = 1,
     rock = 1,
     flying = 1,
-    poison = 1,
+    poison = 0.5,
     normal = 1,
     ghost = 1,
     dark = 1,
@@ -48,17 +48,17 @@ types = {
     dragon = 1,
   },
   push = {
-    you = 1,
+    you = 0.5,
     defeat = 2,
-    push = 1,
+    push = 2,
     grass = 1,
     fire = 1,
     water = 1,
     electric = 1,
-    ice = 1,
+    ice = 0.5,
     ground = 1,
     rock = 2,
-    flying = 1,
+    flying = 2,
     poison = 1,
     normal = 1,
     ghost = 1,
@@ -210,7 +210,7 @@ types = {
   },
   rock = {
     you = 1,
-    defeat = 1,
+    defeat = 2,
     push = 1,
     grass = 1,
     fire = 2,
@@ -233,7 +233,7 @@ types = {
   },
   flying = {
     you = 1,
-    defeat = 1,
+    defeat = 0.5,
     push = 1,
     grass = 2,
     fire = 1,
@@ -279,7 +279,7 @@ types = {
   },
   normal = {
     you = 1,
-    defeat = 1,
+    defeat = 0.5,
     push = 1,
     grass = 1,
     fire = 1,
@@ -302,7 +302,7 @@ types = {
   },
   ghost = {
     you = 1,
-    defeat = 1,
+    defeat = 2,
     push = 1,
     grass = 1,
     fire = 1,
@@ -371,7 +371,7 @@ types = {
   },
   fairy = {
     you = 1,
-    defeat = 1,
+    defeat = 0.5,
     push = 1,
     grass = 1,
     fire = 0.5,
@@ -395,7 +395,7 @@ types = {
   fighting = {
     you = 1,
     defeat = 1,
-    push = 1,
+    push = 2,
     grass = 1,
     fire = 1,
     water = 1,
@@ -788,7 +788,7 @@ for i,v in ipairs(poke) do
 end
 
 attacks = {
-  --[[
+  --[[ https://bulbapedia.bulbagarden.net/wiki/List_of_moves
     name = name of the attack
     atype = type that the move is
     cat = damage category, options are "physical", "special" and "status"
