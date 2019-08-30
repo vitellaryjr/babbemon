@@ -1,3 +1,5 @@
+--usage: types[attack type][opponent type 1] * types[attack type][opponent type 2]
+--eg: types["psychic"]["you"] * types["psychic"]["fighting"] = 0.5*2 = 1
 types = {
   you = {
     you = 1,
@@ -414,7 +416,7 @@ types = {
     dragon = 1,
   },
   psychic = {
-    you = 1,
+    you = 0.5,
     defeat = 1,
     push = 1,
     grass = 1,
@@ -484,6 +486,30 @@ types = {
   },
 }
 
+type_colors = {
+  you = {1,0,.525},
+  push = {.686,.443,.267},
+  defeat = {.482,.047,0},
+  grass = {.29,.698,.271},
+  fire = {1,.208,.122},
+  water = {.275,.478,.918},
+  electric = {1,.871,.227},
+  ice = {.698,.827,.957},
+  ground = {.62,.365,.184},
+  rock = {.918,.510,.275},
+  flying = {.29,.976,.851},
+  poison = {.71,.282,.796},
+  normal = {1,1,1},
+  ghost = {.482,.353,.808},
+  dark = {.275,.275,.318},
+  steel = {.678,.71,.71},
+  fairy = {1,.561,.776},
+  fighting = {.6,.11,0},
+  psychic = {.937,.545,.91},
+  bug = {.639,.757,.22},
+  dragon = {.392,.22,.878},
+}
+
 --[[ egg groups
 monster   -reptilian but not draconic
 frog
@@ -511,7 +537,7 @@ poke = {
     gendm,gendf = odds of the pokemon being a certain gender. 0.2,0.3 means that there's 20% chance of male, 30% chance of female, and 50% chance of other.
     gaypb = odds of the pokemon being gay. preference only affects breeding, and yes, gay breeding can happen
     catch = the odds that a pokemon will be caught. an integer between 0 and 255, with 255 being very high likelihood (not guaranteed?) of catching and 0 being impossible
-    expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255
+    expy = the amount of exp you'll get from defeating the pokemon. number between 1 and 255. https://textuploader.com/atre4
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
     growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
@@ -520,10 +546,42 @@ poke = {
     name = "bab",
     types = {"you"},
     gendm = 0.1,
-    gendf = 0.85,
+    gendf = 0.88,
     gaypb = 0.7,
     catch = 45,
     expy = 64,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+  },
+  {
+    name = "babi",
+    types = {"you","psychic"},
+    gendm = 0.1,
+    gendf = 0.88,
+    gaypb = 0.7,
+    catch = 45,
+    expy = 141,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+  },
+  {
+    name = "babber",
+    types = {"you","psychic"},
+    gendm = 0.1,
+    gendf = 0.88,
+    gaypb = 0.7,
+    catch = 45,
+    expy = 208,
     able = {
       first = nil,
       second = nil,
@@ -728,3 +786,33 @@ pokedex_i = {}
 for i,v in ipairs(poke) do
   pokedex_i[v.name] = i
 end
+
+attacks = {
+  --[[
+    atype = type that the move is
+    cat = damage category, options are "physical", "special" and "status"
+    pp = normal pp that the move has
+    maxpp = max pp that the move can achieve using PP Up or PP Max
+    power = influences the amount of damage the move deals. set as -1 for moves that don't do damage
+    accur = chance of the attack hitting, from 1-100
+    contact = boolean that says whether the attack touches the opponent
+    protect = boolean that says whether the attack is affected by protect
+    magiccoat =  "      "   "      "     "    "     "     "     " magic coat
+    snatch =     "      "   "      "     "    "     "     "     " snatch
+    mirror =     "      "   "      "     "    "     "     "     " mirror move
+    kingrock =   "      "   "      "     "    "     "     "     " king's rock
+    tm,hm,tutor = boolean that states that the move is learned via tm / hm / move tutor
+  ]]
+  tackle = {
+    atype = "normal",
+    cat = "physical",
+    pp = 35,
+    maxpp = 52,
+    power = 40,
+    accur = 100,
+    contact = true,
+    protect = true,
+    mirror = true,
+    kingrock = true,
+  },
+}

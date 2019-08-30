@@ -12,13 +12,15 @@ function canBreed(a,b)
       end
     end
   end
-  if a.name == "ditto" or b.name == "ditto" then
+  if a.name == "ditto" or b.name == "ditto" and a.name ~= b.name then
     return true
   end
   if samegroup then
     if a.gender == "enby" or b.gender == "enby" then
       return true
-    elseif a.pref == b.gender and b.pref == a.gender then
+    elseif a.gay and b.gay and a.gender == b.gender then
+      return true
+    elseif not a.gay and not b.gay and a.gender ~= b.gender then
       return true
     else
       return false
