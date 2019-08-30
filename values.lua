@@ -789,6 +789,7 @@ end
 
 attacks = {
   --[[
+    name = name of the attack
     atype = type that the move is
     cat = damage category, options are "physical", "special" and "status"
     pp = normal pp that the move has
@@ -803,7 +804,8 @@ attacks = {
     kingrock =   "      "   "      "     "    "     "     "     " king's rock
     tm,hm,tutor = boolean that states that the move is learned via tm / hm / move tutor
   ]]
-  tackle = {
+  {
+    name = "tackle",
     atype = "normal",
     cat = "physical",
     pp = 35,
@@ -816,3 +818,8 @@ attacks = {
     kingrock = true,
   },
 }
+
+attack_i = {}
+for i,v in ipairs(attacks) do
+  attack_i[v.name] = i
+end
