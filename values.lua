@@ -764,6 +764,22 @@ poke = {
     growth = "slow",
   },
   {
+    name = "sentret",
+    types = {"normal"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 255,
+    expy = 43,
+    able = {
+      first = "run_away",
+      second = "keen_eye",
+      hidden = "frisk",
+    },
+    egg = {"field"},
+    growth = "medium_fast",
+  },
+  {
     name = "baba",
     anim = true,
     types = {"you"},
