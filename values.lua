@@ -780,6 +780,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "dratini",
+    types = {"dragon"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 45,
+    expy = 60,
+    able = {
+      first = "shed_skin",
+      second = "shed_skin",
+      hidden = "marvel_scale",
+    },
+    egg = {"aquatic","dragon"},
+    growth = "slow",
+  },
+  {
     name = "baba",
     anim = true,
     types = {"you"},
