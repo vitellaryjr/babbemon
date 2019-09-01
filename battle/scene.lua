@@ -18,8 +18,8 @@ function scene.draw(dt)
   love.graphics.ellipse("line",175,250,150,75)
   
   love.graphics.setColor(1,1,1,1)
-  love.graphics.draw(p1draw,600-p1w/2,150-3*p1h/4)
-  love.graphics.draw(p2draw,175-p2w/2,250-3*p2h/4)
+  love.graphics.draw(p1draw,round(600-p1w/2),round(150-3*p1h/4))
+  love.graphics.draw(p2draw,round(175-p2w/2),round(250-3*p2h/4))
   
   love.graphics.printf("press r to refresh pokemon",450,250,500)
   love.graphics.printf("press s to set pokemon to shiny",450,280,500)
