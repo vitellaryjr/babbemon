@@ -796,6 +796,22 @@ poke = {
     growth = "slow",
   },
   {
+    name = "pyukumuku",
+    types = {"water"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 60,
+    expy = 144,
+    able = {
+      first = "innards_out",
+      second = "innards_out",
+      hidden = "unaware",
+    },
+    egg = {"aquatic"},
+    growth = "fast",
+  },
+  {
     name = "baba",
     anim = true,
     types = {"you"},
