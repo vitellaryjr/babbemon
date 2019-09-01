@@ -36,6 +36,8 @@ function love.load()
   love.graphics.setDefaultFilter("nearest","nearest")
   love.graphics.setLineStyle("rough")
   
+  keydown = {}
+  
   --sprite loader stolen from bab be u, as i'm sure many other things will be
   sprites = {}
   local function addsprites(d)
@@ -67,6 +69,8 @@ function love.load()
   end
   poke1 = poke[love.math.random(1,#poke)]
   poke2 = poke[love.math.random(1,#poke)]
+  poke1shiny = love.math.random(1,4096) == 1
+  poke2shiny = love.math.random(1,4096) == 1
   
   local end_load = love.timer.getTime()
   scene = battle
@@ -93,7 +97,15 @@ function love.draw()
 end
 
 function love.keypressed(key)
+  keydown[key] = true
   if scene and scene.keyPressed then
     scene.keyPressed(key)
+  end
+end
+
+function love.keyreleased(key)
+  keydown[key] = false
+  if scene and scene.keyReleased then
+    scene.keyReleased(key)
   end
 end
