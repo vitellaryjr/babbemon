@@ -20,6 +20,23 @@ function scene.draw(dt)
   love.graphics.setColor(1,1,1,1)
   love.graphics.draw(p1draw,600-p1w/2,150-3*p1h/4)
   love.graphics.draw(p2draw,175-p2w/2,250-3*p2h/4)
+  
+  love.graphics.printf("press r to refresh pokemon",450,250,500)
+end
+
+function scene.keyPressed(key)
+  if key == "r" then
+    local newpoke1 = poke1
+    local newpoke2 = poke2
+    while newpoke1 == poke1 do
+      newpoke1 = poke[love.math.random(1,#poke)]
+    end
+    while newpoke2 == poke2 do
+      newpoke2 = poke[love.math.random(1,#poke)]
+    end
+    poke1 = newpoke1
+    poke2 = newpoke2
+  end
 end
 
 return scene

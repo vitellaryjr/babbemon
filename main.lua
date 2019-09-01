@@ -31,7 +31,8 @@ function love.load()
   end
   default_font = love.graphics.newFont()
   game_start_time = love.timer.getTime()
-
+  
+  love.graphics.setFont(default_font)
   love.graphics.setDefaultFilter("nearest","nearest")
   love.graphics.setLineStyle("rough")
   
@@ -88,5 +89,11 @@ function love.draw()
   end
   if scene and scene.draw then
     scene.draw(dt)
+  end
+end
+
+function love.keypressed(key)
+  if scene and scene.keyPressed then
+    scene.keyPressed(key)
   end
 end
