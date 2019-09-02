@@ -1,0 +1,3 @@
+local scene = {}
+
+return scene

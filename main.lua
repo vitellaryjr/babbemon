@@ -5,7 +5,9 @@ require "utils"
 require "values"
 require "func"
 battle = require 'battle/scene'
+overworld = require 'overworld/scene'
 require "battle/game"
+require "overworld/shop"
 
 function love.load()
   print([[
