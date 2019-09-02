@@ -5,6 +5,7 @@ require "utils"
 require "values"
 require "func"
 battle = require 'battle/scene'
+require "battle/game"
 
 function love.load()
   print([[
@@ -71,6 +72,9 @@ function love.load()
   poke2 = poke[love.math.random(1,#poke)]
   poke1shiny = love.math.random(1,4096) == 1
   poke2shiny = love.math.random(1,4096) == 1
+  
+  spritetest = false
+  st_shiny = false
   
   local end_load = love.timer.getTime()
   scene = battle
