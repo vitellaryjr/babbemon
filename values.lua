@@ -825,6 +825,22 @@ poke = {
     growth = "fast",
   },
   {
+    name = "drifloon",
+    types = {"ghost","flying"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 125,
+    expy = 70,
+    able = {
+      first = "aftermath",
+      second = "unburden",
+      hidden = "flare_boost",
+    },
+    egg = {"amorphous"},
+    growth = "fluctuating",
+  },
+  {
     name = "spiritomb",
     types = {"ghost","dark"},
     gendm = 0.5,
