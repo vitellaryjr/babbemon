@@ -74,36 +74,6 @@ end
 
 function lerp(a,b,t) return (1-t)*a + t*b end
 
-function fullDump(o, r, fulldump)
-  if type(o) == 'table' and (not r or r > 0) then
-    local s = '{'
-    local first = true
-    if not fulldump and o["new"] ~= nil then --abridged print for table
-      o = {fullname = o.textname, id = o.id, x = o.x, y = o.y, dir = o.dir}
-    end
-    for k,v in pairs(o) do
-      if not first then
-        s = s .. ', '
-      end
-      local nr = nil
-      if r then
-        nr = r - 1
-      end
-      if type(k) ~= 'number' then
-        s = s .. tostring(k) .. ' = ' .. fullDump(v, nr)
-      else
-        s = s .. fullDump(v, nr)
-      end
-      first = false
-    end
-    return s .. '}'
-  elseif type(o) == 'string' then
-    return '"' .. o .. '"'
-  else
-    return tostring(o)
-  end
-end
-
 function dump(o, fulldump)
   if type(o) == 'table' then
     local s = '{'
@@ -116,6 +86,7 @@ function dump(o, fulldump)
       end
     else
       if not fulldump and o["new"] ~= nil then --abridged print for table
+        --hey do i need this it looks like it's specifically for bab be u
         local tbl = {fullname = o.textname, id = o.id, x = o.x, y = o.y, dir = o.dir}
         for k,v in pairs(tbl) do
            if cn > 1 then s = s .. ',' end
