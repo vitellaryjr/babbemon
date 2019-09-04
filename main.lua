@@ -3,7 +3,6 @@ local start_load = love.timer.getTime()
 debug = false
 require "utils"
 require "values"
-require "func"
 battle = require 'battle/scene'
 overworld = require 'overworld/scene'
 require "battle/game"
