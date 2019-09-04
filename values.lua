@@ -793,6 +793,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "eevee",
+    types = {"normal"},
+    gendm = 0.875,
+    gendf = 0.125,
+    gaypb = 0,
+    catch = 45,
+    expy = 65,
+    able = {
+      first = "run_away",
+      second = "adaptability",
+      hidden = "anticipation",
+    },
+    egg = {"field"},
+    growth = "medium_fast",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
