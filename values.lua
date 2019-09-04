@@ -541,6 +541,16 @@ poke = {
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
     growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
+    attacks = list of attacks the pokemon can learn, by level. example:
+    {
+      1 = {
+        "tackle",
+        "explosion",
+      },
+      3 = {
+        "hyper beam",
+      },
+    },
   ]]
   {
     name = "bab",
@@ -557,6 +567,9 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
+    attacks = {
+      
+    },
   },
   {
     name = "babi",
