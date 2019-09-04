@@ -8,6 +8,8 @@ overworld = require 'overworld/scene'
 require "battle/game"
 require "overworld/shop"
 
+require "gooi"
+
 function love.load()
   print([[
   
