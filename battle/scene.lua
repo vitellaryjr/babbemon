@@ -1,12 +1,25 @@
 local scene = {}
 
 function scene.draw(dt)
-  local p1draw = sprites["battle/"..(poke1shiny and "shiny/" or "")..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")]
-  local p2draw = sprites["battle/"..(poke2shiny and "shiny/" or "")..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")]
-  local p1w = p1draw:getWidth()
-  local p2w = p2draw:getWidth()
-  local p1h = p1draw:getHeight()
-  local p2h = p2draw:getHeight()
+  local p1draw,p2draw
+  if spritetest then
+    if st_shiny then
+      doSpriteTest()
+    end
+    st_shiny = not st_shiny
+  end
+  p1draw = sprites["battle/"..((st_shiny or poke1shiny) and "shiny/" or "")..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")]
+  p2draw = sprites["battle/"..((st_shiny or poke2shiny) and "shiny/" or "")..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")]
+  
+  local p1w,p1h,p2w,p2h = 160,160,160,160
+  if p1draw then
+    p1w = p1draw:getWidth()
+    p1h = p1draw:getHeight()
+  end
+  if p2draw then
+    p2w = p2draw:getWidth()
+    p2h = p2draw:getHeight()
+  end
   
   love.graphics.setLineWidth(4)
   love.graphics.setColor(0.2,0.2,0.2,1)
@@ -18,8 +31,16 @@ function scene.draw(dt)
   love.graphics.ellipse("line",175,250,150,75)
   
   love.graphics.setColor(1,1,1,1)
-  love.graphics.draw(p1draw,round(600-p1w/2),round(150-3*p1h/4))
-  love.graphics.draw(p2draw,round(175-p2w/2),round(250-3*p2h/4))
+  if p1draw then
+    love.graphics.draw(p1draw,round(600-p1w/2),round(150-3*p1h/4))
+  else
+    print(poke1.name)
+  end
+  if p2draw then
+    love.graphics.draw(p2draw,round(175-p2w/2),round(250-3*p2h/4))
+  else
+    print(poke2.name)
+  end
   
   love.graphics.printf("press r to refresh pokemon",450,250,500)
   love.graphics.printf("press s to set pokemon to shiny",450,280,500)
@@ -62,6 +83,10 @@ function scene.keyPressed(key)
         poke2shiny = not poke2shiny
       end
     end
+  end
+  if key == "f12" then
+    spritetest = true
+    doSpriteTest(true)
   end
 end
 

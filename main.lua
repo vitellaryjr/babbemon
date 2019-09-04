@@ -3,8 +3,10 @@ local start_load = love.timer.getTime()
 debug = false
 require "utils"
 require "values"
-require "func"
 battle = require 'battle/scene'
+overworld = require 'overworld/scene'
+require "battle/game"
+require "overworld/shop"
 
 function love.load()
   print([[
@@ -71,6 +73,9 @@ function love.load()
   poke2 = poke[love.math.random(1,#poke)]
   poke1shiny = love.math.random(1,4096) == 1
   poke2shiny = love.math.random(1,4096) == 1
+  
+  spritetest = false
+  st_shiny = false
   
   local end_load = love.timer.getTime()
   scene = battle
