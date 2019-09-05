@@ -809,6 +809,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "koffing",
+    types = {"poison"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 190,
+    expy = 68,
+    able = {
+      first = "levitate",
+      second = "nil",
+      hidden = "nil",
+    },
+    egg = {"amorphous"},
+    growth = "medium_fast",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
