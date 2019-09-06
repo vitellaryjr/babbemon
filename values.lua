@@ -873,6 +873,22 @@ poke = {
     growth = "medium_slow",
   },
   {
+    name = "duosion",
+    types = {"psychic"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 100,
+    expy = 130,
+    able = {
+      first = "overcoat",
+      second = "magic_guard",
+      hidden = "regenerator",
+    },
+    egg = {"amorphous"},
+    growth = "medium_slow",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
