@@ -825,6 +825,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "shuppet",
+    types = {"ghost"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 225,
+    expy = 59,
+    able = {
+      first = "insomnia",
+      second = "frisk",
+      hidden = "cursed_body",
+    },
+    egg = {"amorphous"},
+    growth = "medium_fast",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
