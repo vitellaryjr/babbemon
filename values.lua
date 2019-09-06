@@ -857,6 +857,22 @@ poke = {
     growth = "medium_slow",
   },
   {
+    name = "solosis",
+    types = {"psychic"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 200,
+    expy = 58,
+    able = {
+      first = "overcoat",
+      second = "magic_guard",
+      hidden = "regenerator",
+    },
+    egg = {"amorphous"},
+    growth = "medium_slow",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
