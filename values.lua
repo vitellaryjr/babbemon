@@ -841,6 +841,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "litwick",
+    types = {"ghost","fire"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 190,
+    expy = 55,
+    able = {
+      first = "flash_fire",
+      second = "flame_body",
+      hidden = "infiltrator",
+    },
+    egg = {"amorphous"},
+    growth = "medium_slow",
+  },
+  {
     name = "dratini",
     types = {"dragon"},
     gendm = 0.5,
