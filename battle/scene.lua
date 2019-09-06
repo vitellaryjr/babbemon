@@ -7,6 +7,12 @@ function scene.draw(dt)
       doSpriteTest()
     end
     st_shiny = not st_shiny
+  else
+    if test_endtime ~= 0 then
+      print("sprite test took "..tostring(round((test_endtime - test_starttime),3)).." seconds")
+      test_endtime = 0
+      test_starttime = 0
+    end
   end
   p1draw = sprites["battle/"..((st_shiny or poke1shiny) and "shiny/" or "")..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")]
   p2draw = sprites["battle/"..((st_shiny or poke2shiny) and "shiny/" or "")..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")]
@@ -85,6 +91,7 @@ function scene.keyPressed(key)
     end
   end
   if key == "f12" then
+    test_starttime = love.timer.getTime()
     spritetest = true
     doSpriteTest(true)
   end
