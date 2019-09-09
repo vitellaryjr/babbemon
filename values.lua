@@ -857,6 +857,22 @@ poke = {
     growth = "medium_slow",
   },
   {
+    name = "lampent",
+    types = {"ghost","fire"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 90,
+    expy = 130,
+    able = {
+      first = "flash_fire",
+      second = "flame_body",
+      hidden = "infiltrator",
+    },
+    egg = {"amorphous"},
+    growth = "medium_slow",
+  },
+  {
     name = "solosis",
     types = {"psychic"},
     gendm = 0.5,
