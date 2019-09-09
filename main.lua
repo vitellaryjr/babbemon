@@ -36,6 +36,9 @@ function love.load()
   default_font = love.graphics.newFont()
   game_start_time = love.timer.getTime()
   
+  test_starttime = 0
+  test_endtime = 0
+  
   love.graphics.setFont(default_font)
   love.graphics.setDefaultFilter("nearest","nearest")
   love.graphics.setLineStyle("rough")
