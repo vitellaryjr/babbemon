@@ -824,6 +824,22 @@ poke = {
     egg = {"aquatic"},
     growth = "medium_fast",
   },
+   {
+    name = "migri",
+    types = {"you","defeat"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 80,
+    expy = 100,
+    able = {
+      first = "levitate",
+      second = "infiltrator",
+      hidden = "magic_guard",
+    },
+    egg = {"amorphous"},
+    growth = "medium",
+  },
   {
     name = "oddish",
     types = {"grass","poison"},
