@@ -808,6 +808,22 @@ poke = {
     egg = {"aquatic"},
     growth = "medium_fast",
   },
+   {
+    name = "fishe",
+    types = {"water","normal"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 240,
+    expy = 65,
+    able = {
+      first = "run_away",
+      second = "torrent",
+      hidden = "water_bubble",
+    },
+    egg = {"aquatic"},
+    growth = "medium_fast",
+  },
   {
     name = "oddish",
     types = {"grass","poison"},
