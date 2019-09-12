@@ -761,6 +761,22 @@ poke = {
     growth = "medium_fast",
   },
   {
+    name = "wurm",
+    types = {"bug"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 250,
+    expy = 50,
+    able = {
+      first = "frisk",
+      second = "harvest",
+      hidden = "unnerve",
+    },
+    egg = {"insect"},
+    growth = "fast",
+  },
+  {
     name = "sneel",
     types = {"water"},
     gendm = 0.5,
@@ -773,7 +789,7 @@ poke = {
       second = "storm_drain",
       hidden = "solid_rock",
     },
-    egg = {"inorganic"},
+    egg = {"aquatic"},
     growth = "medium_fast",
   },
   {
@@ -789,7 +805,7 @@ poke = {
       second = "storm_drain",
       hidden = "solid_rock",
     },
-    egg = {"inorganic"},
+    egg = {"aquatic"},
     growth = "medium_fast",
   },
   {
