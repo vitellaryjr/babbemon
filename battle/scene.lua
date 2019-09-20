@@ -70,7 +70,7 @@ function scene.keyPressed(key)
     end
   end
   if key == "s" then
-    if keydown["lctrl"] or keydown["rctrl"] then
+    if keydown["ctrl"] then
       if keydown["1"] then
         poke1shiny = true
       elseif keydown["2"] then

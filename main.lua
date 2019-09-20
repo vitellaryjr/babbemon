@@ -108,6 +108,12 @@ end
 
 function love.keypressed(key)
   keydown[key] = true
+  if key == "lshift" or key == "rshift" then
+    keydown["shift"] = true
+  end
+  if key == "lctrl" or key == "rctrl" then
+    keydown["ctrl"] = true
+  end
   if scene and scene.keyPressed then
     scene.keyPressed(key)
   end
