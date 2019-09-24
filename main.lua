@@ -82,6 +82,8 @@ function love.load()
   spritetest = false
   st_shiny = false
   
+  searchstr = ""
+  
   local end_load = love.timer.getTime()
   scene = battle
   print("load took "..tostring(round(end_load-start_load,4)).." seconds, "..(end_load-start_load < 1 and "fast" or "slow"))
@@ -121,6 +123,12 @@ end
 
 function love.keyreleased(key)
   keydown[key] = false
+  if key == "lshift" or key == "rshift" then
+    keydown["shift"] = false
+  end
+  if key == "lctrl" or key == "rctrl" then
+    keydown["ctrl"] = false
+  end
   if scene and scene.keyReleased then
     scene.keyReleased(key)
   end

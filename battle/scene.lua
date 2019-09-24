@@ -1,4 +1,5 @@
 local scene = {}
+local searching = false
 
 function scene.draw(dt)
   local p1draw,p2draw
@@ -50,50 +51,78 @@ function scene.draw(dt)
   
   love.graphics.printf("press r to refresh pokemon",450,250,500)
   love.graphics.printf("press s to set pokemon to shiny",450,280,500)
+  if searching then
+    love.graphics.printf("searching: "..searchstr,450,310,500)
+  else
+    love.graphics.printf("press ctrl+f to search for a specific pokemon",450,310,500)
+  end
 end
 
 function scene.keyPressed(key)
-  if key == "r" then
-    local newpoke1 = poke1
-    local newpoke2 = poke2
-    while newpoke1 == poke1 do
-      newpoke1 = poke[love.math.random(1,#poke)]
-    end
-    while newpoke2 == poke2 do
-      newpoke2 = poke[love.math.random(1,#poke)]
-    end
-    poke1 = newpoke1
-    poke2 = newpoke2
-    if keydown["lctrl"] or keydown["rctrl"] then
-      poke1shiny = love.math.random(1,4096) == 1
-      poke2shiny = love.math.random(1,4096) == 1
-    end
+  if key == "f" and keydown["ctrl"] then
+    searching = not searching
   end
-  if key == "s" then
-    if keydown["ctrl"] then
-      if keydown["1"] then
-        poke1shiny = true
-      elseif keydown["2"] then
-        poke2shiny = true
+  if searching then
+    if key == "backspace" then
+      if keydown["ctrl"] then
+        searchstr = ""
       else
-        poke1shiny = true
-        poke2shiny = true
+        searchstr = searchstr:sub(1,-2)
       end
-    else
-      if keydown["1"] then
-        poke1shiny = not poke1shiny
-      elseif keydown["2"] then
-        poke2shiny = not poke2shiny
-      else
-        poke1shiny = not poke1shiny
-        poke2shiny = not poke2shiny
+    elseif key == "return" then
+      if pokedex_i[searchstr] then
+        poke1 = poke[pokedex_i[searchstr]]
+        poke2 = poke[pokedex_i[searchstr]]
+        searchstr = ""
+        searching = false
+      end
+    elseif not keydown["ctrl"] then
+      if key == "space" then key = " " end
+      searchstr = searchstr..key
+    end
+  else
+    if key == "r" then
+      local newpoke1 = poke1
+      local newpoke2 = poke2
+      while newpoke1 == poke1 do
+        newpoke1 = poke[love.math.random(1,#poke)]
+      end
+      while newpoke2 == poke2 do
+        newpoke2 = poke[love.math.random(1,#poke)]
+      end
+      poke1 = newpoke1
+      poke2 = newpoke2
+      if keydown["lctrl"] or keydown["rctrl"] then
+        poke1shiny = love.math.random(1,4096) == 1
+        poke2shiny = love.math.random(1,4096) == 1
       end
     end
-  end
-  if key == "f12" then
-    test_starttime = love.timer.getTime()
-    spritetest = true
-    doSpriteTest(true)
+    if key == "s" then
+      if keydown["ctrl"] then
+        if keydown["1"] then
+          poke1shiny = true
+        elseif keydown["2"] then
+          poke2shiny = true
+        else
+          poke1shiny = true
+          poke2shiny = true
+        end
+      else
+        if keydown["1"] then
+          poke1shiny = not poke1shiny
+        elseif keydown["2"] then
+          poke2shiny = not poke2shiny
+        else
+          poke1shiny = not poke1shiny
+          poke2shiny = not poke2shiny
+        end
+      end
+    end
+    if key == "f12" then
+      test_starttime = love.timer.getTime()
+      spritetest = true
+      doSpriteTest(true)
+    end
   end
 end
 
