@@ -41,12 +41,12 @@ function scene.draw(dt)
   if p1draw then
     love.graphics.draw(p1draw,round(600-p1w/2),round(150-3*p1h/4))
   else
-    print(poke1.name)
+    print("this opponent failed: "..(poke1shiny and "shiny " or "")..poke1.name)
   end
   if p2draw then
     love.graphics.draw(p2draw,round(175-p2w/2),round(250-3*p2h/4))
   else
-    print(poke2.name)
+    print("this player failed: "..(poke2shiny and "shiny " or "")..poke2.name)
   end
   
   love.graphics.printf("press r to refresh pokemon",450,250,500)
