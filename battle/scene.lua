@@ -92,7 +92,7 @@ function scene.keyPressed(key)
       end
       poke1 = newpoke1
       poke2 = newpoke2
-      if keydown["lctrl"] or keydown["rctrl"] then
+      if keydown["ctrl"] then
         poke1shiny = love.math.random(1,4096) == 1
         poke2shiny = love.math.random(1,4096) == 1
       end
