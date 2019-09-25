@@ -1130,6 +1130,22 @@ poke = {
     egg = {"cant"},
     growth = "erratic",
   },
+  {
+    name = "indexnil",
+    types = {},
+    gendm = 0,
+    gendf = 0,
+    gaypb = 0,
+    catch = 255,
+    expy = 0,
+    able = {
+      first = nil,
+      second = nil,
+      hidden = nil,
+    },
+    egg = {"cant"},
+    growth = "erratic",
+  },
 }
 
 pokedex_i = {}

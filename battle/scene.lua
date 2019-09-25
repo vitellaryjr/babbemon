@@ -39,12 +39,12 @@ function scene.draw(dt)
   
   love.graphics.setColor(1,1,1,1)
   if p1draw then
-    love.graphics.draw(p1draw,round(600-p1w/2),round(150-3*p1h/4))
+    love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
   else
     print("this opponent failed: "..(poke1shiny and "shiny " or "")..poke1.name)
   end
   if p2draw then
-    love.graphics.draw(p2draw,round(175-p2w/2),round(250-3*p2h/4))
+    love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
   else
     print("this player failed: "..(poke2shiny and "shiny " or "")..poke2.name)
   end
