@@ -1148,9 +1148,10 @@ poke = {
   },
 }
 
-pokedex_i = {}
+poke_i = {}
 for i,v in ipairs(poke) do
-  pokedex_i[v.name] = i
+  poke[v.name] = v
+  poke_i[v.name] = i
 end
 
 attacks = {

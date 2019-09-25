@@ -1,7 +1,7 @@
 function canBreed(a,b)
   local samegroup = false
-  local dexa = poke[pokedex_i[a.name]]
-  local dexb = poke[pokedex_i[b.name]]
+  local dexa = poke[a.name]
+  local dexb = poke[b.name]
   for _,egga in ipairs(dexa.egg) do
     for _,eggb in ipairs(dexb.egg) do
       if egga == "cant" or eggb == "cant" then

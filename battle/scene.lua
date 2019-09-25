@@ -70,9 +70,9 @@ function scene.keyPressed(key)
         searchstr = searchstr:sub(1,-2)
       end
     elseif key == "return" then
-      if pokedex_i[searchstr] then
-        poke1 = poke[pokedex_i[searchstr]]
-        poke2 = poke[pokedex_i[searchstr]]
+      if poke[searchstr] then
+        poke1 = poke[searchstr]
+        poke2 = poke[searchstr]
         searchstr = ""
         searching = false
       end
