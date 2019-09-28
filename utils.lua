@@ -1,30 +1,21 @@
 anim_stage = 0
 anim_timer = 0
 
-function dump(o, fulldump)
+function dump(o)
   if type(o) == 'table' then
     local s = '{'
     local cn = 1
     if #o ~= 0 then
       for _,v in ipairs(o) do
         if cn > 1 then s = s .. ',' end
-        s = s .. dump(v, fulldump)
+        s = s .. dump(v)
         cn = cn + 1
       end
     else
-      if not fulldump and o["new"] ~= nil then --abridged print for table
-        local tbl = {fullname = o.textname, id = o.id, x = o.x, y = o.y, dir = o.dir}
-        for k,v in pairs(tbl) do
-           if cn > 1 then s = s .. ',' end
-          s = s .. tostring(k) .. ' = ' .. dump(v, fulldump)
-          cn = cn + 1
-        end
-      else
-        for k,v in pairs(o) do
-          if cn > 1 then s = s .. ',' end
-          s = s .. tostring(k) .. ' = ' .. dump(v, fulldump)
-          cn = cn + 1
-        end
+      for k,v in pairs(o) do
+        if cn > 1 then s = s .. ',' end
+        s = s .. tostring(k) .. ' = ' .. dump(v)
+        cn = cn + 1
       end
     end
     return s .. '}'
@@ -74,41 +65,6 @@ end
 
 function lerp(a,b,t) return (1-t)*a + t*b end
 
-function dump(o, fulldump)
-  if type(o) == 'table' then
-    local s = '{'
-    local cn = 1
-    if #o ~= 0 then
-      for _,v in ipairs(o) do
-        if cn > 1 then s = s .. ',' end
-        s = s .. dump(v, fulldump)
-        cn = cn + 1
-      end
-    else
-      if not fulldump and o["new"] ~= nil then --abridged print for table
-        --hey do i need this it looks like it's specifically for bab be u
-        local tbl = {fullname = o.textname, id = o.id, x = o.x, y = o.y, dir = o.dir}
-        for k,v in pairs(tbl) do
-           if cn > 1 then s = s .. ',' end
-          s = s .. tostring(k) .. ' = ' .. dump(v, fulldump)
-          cn = cn + 1
-        end
-      else
-        for k,v in pairs(o) do
-          if cn > 1 then s = s .. ',' end
-          s = s .. tostring(k) .. ' = ' .. dump(v, fulldump)
-          cn = cn + 1
-        end
-      end
-    end
-    return s .. '}'
-  elseif type(o) == 'string' then
-    return '"' .. o .. '"'
-  else
-    return tostring(o)
-  end
-end
-
 function eq(a,b)
   if type(a) == "table" or type(b) == "table" then
     if type(a) ~= "table" or type(b) ~= "table" then
@@ -140,10 +96,10 @@ function string.ends(str, ending)
 end
 
 function table.has_value(tab, val)
-  for index, value in ipairs(tab) do
-      if value == val then
-          return true
-      end
+  for _, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
   end
 
   return false
