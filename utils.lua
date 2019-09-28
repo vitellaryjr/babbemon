@@ -140,7 +140,7 @@ function round(num, numDecimalPlaces)
 end
 
 function prime(a)
-  for b=2,math.floor(a/2) do
+  for b=2,math.floor(math.sqrt(a)) do
     if a%b == 0 then
       return false
     end
