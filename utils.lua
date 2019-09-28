@@ -138,3 +138,12 @@ function round(num, numDecimalPlaces)
   local mult = 10^(numDecimalPlaces or 0)
   return math.floor(num * mult + 0.5) / mult
 end
+
+function prime(a)
+  for b=2,math.floor(a/2) do
+    if a%b == 0 then
+      return false
+    end
+  end
+  return true
+end
