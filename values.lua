@@ -636,6 +636,24 @@ poke = {
     growth = "medium_slow",
   },
   {
+    name = "flof",
+    types = {"you"},
+    gendm = 0.88,
+    gendf = 0.1,
+    gaypb = 0.7,
+    catch = 90,
+    expy = 72,
+    able = {
+      first = "fluffy",
+      second = "fur_coat",
+      hidden = "unaware",
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+    attacks = {
+      
+    },
+  {
     name = "skul",
     types = {"defeat"},
     gendm = 0.6,
