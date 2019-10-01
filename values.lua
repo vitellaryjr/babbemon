@@ -654,6 +654,24 @@ poke = {
       
     },
   {
+    name = "furlof",
+    types = {"you","water"},
+    gendm = 0.88,
+    gendf = 0.1,
+    gaypb = 0.7,
+    catch = 45,
+    expy = 90,
+    able = {
+      first = "fluffy",
+      second = "fur_coat",
+      hidden = "unaware",
+    },
+    egg = {"field"},
+    growth = "medium_slow",
+    attacks = {
+      
+    },
+  {
     name = "skul",
     types = {"defeat"},
     gendm = 0.6,
