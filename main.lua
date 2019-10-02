@@ -113,6 +113,12 @@ function love.keypressed(key)
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = true
   end
+  if key == "lalt" or key == "ralt" then
+    keydown["alt"] = true
+  end
+  if key == "return" or key == "kpenter" then
+    keydown["enter"] = true
+  end
   if scene and scene.keyPressed then
     scene:keyPressed(key)
   end
@@ -125,6 +131,12 @@ function love.keyreleased(key)
   end
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = false
+  end
+  if key == "lalt" or key == "ralt" then
+    keydown["alt"] = false
+  end
+  if key == "return" or key == "kpenter" then
+    keydown["enter"] = false
   end
   if scene and scene.keyReleased then
     scene:keyReleased(key)
