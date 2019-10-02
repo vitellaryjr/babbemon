@@ -543,6 +543,12 @@ poke = {
     growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
     attacks = list of attacks the pokemon can learn, by level. example:
     {
+      "tm" = {
+        "swim",
+      },
+      "evolve" = {
+        "explosion 2",
+      },
       1 = {
         "tackle",
         "explosion",
@@ -632,6 +638,32 @@ poke = {
     },
     egg = {"humanoid"},
     growth = "medium_slow",
+  },
+  {
+    name = "kat",
+    types = {"you"},
+    gendm = 0.05,
+    gendf = 0.95,
+    gaypb = 0.3,
+    catch = 90,
+    expy = 72,
+    able = {},
+    egg = {"field"},
+    growth = "medium_slow",
+    attacks = {},
+  },
+  {
+    name = "copkat",
+    types = {"you","fighting"},
+    gendm = 0.05,
+    gendf = 0.95,
+    gaypb = 0.3,
+    catch = 90,
+    expy = 72,
+    able = {},
+    egg = {"field"},
+    growth = "medium_slow",
+    attacks = {},
   },
   {
     name = "flof",
