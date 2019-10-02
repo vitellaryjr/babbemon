@@ -861,6 +861,22 @@ poke = {
     growth = "medium_fast",
   },
    {
+    name = "starrfishe",
+    types = {"water"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 200,
+    expy = 72,
+    able = {
+      first = "sticky_hold",
+      second = "oblivious",
+      hidden = "gooey",
+    },
+    egg = {"aquatic"},
+    growth = "medium_fast",
+  },
+   {
     name = "migri",
     types = {"you","defeat"},
     gendm = 0.5,
@@ -874,7 +890,7 @@ poke = {
       hidden = "magic_guard",
     },
     egg = {"amorphous"},
-    growth = "medium",
+    growth = "medium_slow",
   },
   {
     name = "oddish",
