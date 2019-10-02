@@ -131,6 +131,12 @@ function love.keypressed(key)
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = true
   end
+  if key == "lalt" or key == "ralt" then
+    keydown["alt"] = true
+  end
+  if key == "return" or key == "kpenter" then
+    keydown["enter"] = true
+  end
   if key == "f1" then
     loadScene(overworld)
   elseif key == "f2" then
@@ -148,6 +154,12 @@ function love.keyreleased(key)
   end
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = false
+  end
+  if key == "lalt" or key == "ralt" then
+    keydown["alt"] = false
+  end
+  if key == "return" or key == "kpenter" then
+    keydown["enter"] = false
   end
   if loaded_scene and scene.keyReleased then
     scene:keyReleased(key)
