@@ -567,9 +567,7 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
-    attacks = {
-      
-    },
+    attacks = {},
   },
   {
     name = "babi",
@@ -650,9 +648,8 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
-    attacks = {
-      
-    },
+    attacks = {},
+  },
   {
     name = "furlof",
     types = {"you","water"},
@@ -668,9 +665,8 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
-    attacks = {
-      
-    },
+    attacks = {},
+  },
   {
     name = "skul",
     types = {"defeat"},
