@@ -1,22 +1,36 @@
 local scene = {}
-local searching = false
 
-function scene.draw(dt)
+function scene:load()
+  self.poke1 = poke[love.math.random(1,#poke)]
+  self.poke2 = poke[love.math.random(1,#poke)]
+  self.poke1shiny = love.math.random(1,4096) == 1
+  self.poke2shiny = love.math.random(1,4096) == 1
+
+  self.searching = false
+  self.searchstr = ""
+
+  self.spritetest = false
+  self.test_starttime = 0
+  self.test_endtime = 0
+  self.st_shiny = false
+end
+
+function scene:draw(dt)
   local p1draw,p2draw
-  if spritetest then
-    if st_shiny then
+  if self.spritetest then
+    if self.st_shiny then
       doSpriteTest()
     end
-    st_shiny = not st_shiny
+    self.st_shiny = not self.st_shiny
   else
-    if test_endtime ~= 0 then
-      print("sprite test took "..tostring(round((test_endtime - test_starttime),3)).." seconds")
-      test_endtime = 0
-      test_starttime = 0
+    if self.test_endtime ~= 0 then
+      print("sprite test took "..tostring(round((self.test_endtime - self.test_starttime),3)).." seconds")
+      self.test_endtime = 0
+      self.test_starttime = 0
     end
   end
-  p1draw = sprites["battle/"..((st_shiny or poke1shiny) and "shiny/" or "")..(poke1.sprite or poke1.name).."_f"..(poke1.anim and ("_"..tostring(anim_stage)) or "")]
-  p2draw = sprites["battle/"..((st_shiny or poke2shiny) and "shiny/" or "")..(poke2.sprite or poke2.name).."_b"..(poke2.anim and ("_"..tostring(anim_stage)) or "")]
+  p1draw = sprites["battle/"..((self.st_shiny or self.poke1shiny) and "shiny/" or "")..(self.poke1.sprite or self.poke1.name).."_f"..(self.poke1.anim and ("_"..tostring(anim_stage)) or "")]
+  p2draw = sprites["battle/"..((self.st_shiny or self.poke2shiny) and "shiny/" or "")..(self.poke2.sprite or self.poke2.name).."_b"..(self.poke2.anim and ("_"..tostring(anim_stage)) or "")]
   
   local p1w,p1h,p2w,p2h = 160,160,160,160
   if p1draw then
@@ -41,86 +55,86 @@ function scene.draw(dt)
   if p1draw then
     love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
   else
-    print("this opponent failed: "..(poke1shiny and "shiny " or "")..poke1.name)
+    print("this opponent failed: "..(self.poke1shiny and "shiny " or "")..self.poke1.name)
   end
   if p2draw then
     love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
   else
-    print("this player failed: "..(poke2shiny and "shiny " or "")..poke2.name)
+    print("this player failed: "..(self.poke2shiny and "shiny " or "")..self.poke2.name)
   end
   
   love.graphics.printf("press r to refresh pokemon",450,250,500)
   love.graphics.printf("press s to set pokemon to shiny",450,280,500)
-  if searching then
-    love.graphics.printf("searching: "..searchstr,450,310,500)
+  if self.searching then
+    love.graphics.printf("searching: "..self.searchstr,450,310,500)
   else
     love.graphics.printf("press ctrl+f to search for a specific pokemon",450,310,500)
   end
 end
 
-function scene.keyPressed(key)
+function scene:keyPressed(key)
   if key == "f" and keydown["ctrl"] then
-    searching = not searching
+    self.searching = not self.searching
   end
-  if searching then
+  if self.searching then
     if key == "backspace" then
       if keydown["ctrl"] then
-        searchstr = ""
+        self.searchstr = ""
       else
-        searchstr = searchstr:sub(1,-2)
+        self.searchstr = self.searchstr:sub(1,-2)
       end
     elseif key == "return" then
-      if poke[searchstr] then
-        poke1 = poke[searchstr]
-        poke2 = poke[searchstr]
-        searchstr = ""
-        searching = false
+      if poke[self.searchstr] then
+        self.poke1 = poke[self.searchstr]
+        self.poke2 = poke[self.searchstr]
+        self.searchstr = ""
+        self.searching = false
       end
     elseif not keydown["ctrl"] then
       if key == "space" then key = " " end
-      searchstr = searchstr..key
+      self.searchstr = self.searchstr..key
     end
   else
     if key == "r" then
-      local newpoke1 = poke1
-      local newpoke2 = poke2
-      while newpoke1 == poke1 do
+      local newpoke1 = self.poke1
+      local newpoke2 = self.poke2
+      while newpoke1 == self.poke1 do
         newpoke1 = poke[love.math.random(1,#poke)]
       end
-      while newpoke2 == poke2 do
+      while newpoke2 == self.poke2 do
         newpoke2 = poke[love.math.random(1,#poke)]
       end
-      poke1 = newpoke1
-      poke2 = newpoke2
+      self.poke1 = newpoke1
+      self.poke2 = newpoke2
       if keydown["ctrl"] then
-        poke1shiny = love.math.random(1,4096) == 1
-        poke2shiny = love.math.random(1,4096) == 1
+        self.poke1shiny = love.math.random(1,4096) == 1
+        self.poke2shiny = love.math.random(1,4096) == 1
       end
     end
     if key == "s" then
       if keydown["ctrl"] then
         if keydown["1"] then
-          poke1shiny = true
+          self.poke1shiny = true
         elseif keydown["2"] then
-          poke2shiny = true
+          self.poke2shiny = true
         else
-          poke1shiny = true
-          poke2shiny = true
+          self.poke1shiny = true
+          self.poke2shiny = true
         end
       else
         if keydown["1"] then
-          poke1shiny = not poke1shiny
+          self.poke1shiny = not self.poke1shiny
         elseif keydown["2"] then
-          poke2shiny = not poke2shiny
+          self.poke2shiny = not self.poke2shiny
         else
-          poke1shiny = not poke1shiny
-          poke2shiny = not poke2shiny
+          self.poke1shiny = not self.poke1shiny
+          self.poke2shiny = not self.poke2shiny
         end
       end
     end
     if key == "f12" then
-      test_starttime = love.timer.getTime()
-      spritetest = true
+      self.test_starttime = love.timer.getTime()
+      self.spritetest = true
       doSpriteTest(true)
     end
   end

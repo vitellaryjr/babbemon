@@ -36,9 +36,6 @@ function love.load()
   default_font = love.graphics.newFont()
   game_start_time = love.timer.getTime()
   
-  test_starttime = 0
-  test_endtime = 0
-  
   love.graphics.setFont(default_font)
   love.graphics.setDefaultFilter("nearest","nearest")
   love.graphics.setLineStyle("rough")
@@ -74,25 +71,23 @@ function love.load()
   if love.window.setIcon(love.image.newImageData("assets/sprites/icon.png")) then
     print("icon changed")
   end
-  poke1 = poke[love.math.random(1,#poke)]
-  poke2 = poke[love.math.random(1,#poke)]
-  poke1shiny = love.math.random(1,4096) == 1
-  poke2shiny = love.math.random(1,4096) == 1
-  
-  spritetest = false
-  st_shiny = false
-  
-  searchstr = ""
   
   local end_load = love.timer.getTime()
-  scene = battle
+  loadScene(battle)
   print("load took "..tostring(round(end_load-start_load,4)).." seconds, "..(end_load-start_load < 1 and "fast" or "slow"))
+end
+
+function loadScene(new)
+  scene = new
+  if scene.load then
+    scene:load()
+  end
 end
 
 function love.update()
   local dt = love.timer.getDelta()
   if scene and scene.update then
-    scene.update(dt)
+    scene:update(dt)
   end
 end
 
@@ -104,7 +99,7 @@ function love.draw()
     anim_timer = anim_timer-0.2
   end
   if scene and scene.draw then
-    scene.draw(dt)
+    scene:draw(dt)
   end
 end
 
@@ -117,7 +112,7 @@ function love.keypressed(key)
     keydown["ctrl"] = true
   end
   if scene and scene.keyPressed then
-    scene.keyPressed(key)
+    scene:keyPressed(key)
   end
 end
 
@@ -130,6 +125,6 @@ function love.keyreleased(key)
     keydown["ctrl"] = false
   end
   if scene and scene.keyReleased then
-    scene.keyReleased(key)
+    scene:keyReleased(key)
   end
 end
