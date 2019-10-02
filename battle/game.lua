@@ -1,14 +1,14 @@
 function doSpriteTest(just_started)
   if just_started then
-    poke1 = poke[1]
-    poke2 = poke[1]
+    battle.poke1 = poke[1]
+    battle.poke2 = poke[1]
   else
-    if poke_i[poke1.name] == #poke then
-      spritetest = false
-      test_endtime = love.timer.getTime()
+    if poke_i[battle.poke1.name] == #poke then
+      battle.spritetest = false
+      battle.test_endtime = love.timer.getTime()
     else
-      poke1 = poke[poke_i[poke1.name]+1]
-      poke2 = poke[poke_i[poke2.name]+1]
+      battle.poke1 = poke[poke_i[battle.poke1.name]+1]
+      battle.poke2 = poke[poke_i[battle.poke2.name]+1]
     end
   end
 end
