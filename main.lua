@@ -8,9 +8,14 @@ require "values/types"
 battle = require 'battle/scene'
 overworld = require 'overworld/scene'
 require "battle/game"
+require "overworld/game"
+require "overworld/object"
 require "overworld/shop"
 
-require "gooi"
+-- lily's opinion: maybe gooi shouldn't be used? it disappoints me that it cant be scaled by graphics transforms
+-- but also my custom ui system from bab still isn't complete so there's not really the perfect option yet
+require "lib/gooi"
+tween = require "lib/tween"
 
 function love.load()
   print([[
@@ -43,6 +48,7 @@ function love.load()
   love.graphics.setLineStyle("rough")
   
   keydown = {}
+  tweens = {}
   
   --sprite loader stolen from bab be u, as i'm sure many other things will be
   sprites = {}
@@ -75,20 +81,32 @@ function love.load()
   end
   
   local end_load = love.timer.getTime()
-  loadScene(battle)
+  loadScene(overworld)
   print("load took "..tostring(round(end_load-start_load,4)).." seconds, "..(end_load-start_load < 1 and "fast" or "slow"))
 end
 
 function loadScene(new)
+  loaded_scene = false
   scene = new
   if scene.load then
     scene:load()
   end
 end
 
+function addTween(tween, id, after)
+  tweens[id] = {tween = tween, after = after}
+end
+
 function love.update()
+  loaded_scene = true
   local dt = love.timer.getDelta()
-  if scene and scene.update then
+  for k,v in pairs(tweens) do
+    if v.tween:update(dt) then
+      tweens[k] = nil
+      if v.after then v:after() end
+    end
+  end
+  if loaded_scene and scene.update then
     scene:update(dt)
   end
 end
@@ -100,7 +118,7 @@ function love.draw()
     anim_stage = (anim_stage+1)%3
     anim_timer = anim_timer-0.2
   end
-  if scene and scene.draw then
+  if loaded_scene and scene.draw then
     scene:draw(dt)
   end
 end
@@ -112,6 +130,11 @@ function love.keypressed(key)
   end
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = true
+  end
+  if key == "f1" then
+    loadScene(overworld)
+  elseif key == "f2" then
+    loadScene(battle)
   end
   if scene and scene.keyPressed then
     scene:keyPressed(key)
@@ -126,7 +149,7 @@ function love.keyreleased(key)
   if key == "lctrl" or key == "rctrl" then
     keydown["ctrl"] = false
   end
-  if scene and scene.keyReleased then
+  if loaded_scene and scene.keyReleased then
     scene:keyReleased(key)
   end
 end
