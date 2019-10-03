@@ -152,5 +152,5 @@ function pair(a, b)
   if a >= 0 then a = a * 2 else a = a * -2 + 1 end
   if b >= 0 then b = b * 2 else b = b * -2 + 1 end
 
-  return (((a + b) * (a + b + 1)) / 2) + b;
+  return (((a + b) * (a + b + 1)) / 2) + b
 end
