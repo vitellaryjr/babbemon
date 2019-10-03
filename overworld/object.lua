@@ -8,6 +8,8 @@ function Object:new(type, o)
   o.x = o.x or 0
   o.y = o.y or 0
   o.dir = o.dir or 0
+  o.layer = o.layer or 0
+  o.pivot = o.pivot or {x = 0.5, y = 0.5}
 
   o.draw = {
     x = o.draw and o.draw.x or o.x,
@@ -21,6 +23,15 @@ function Object:new(type, o)
   setmetatable(o, self)
   self.__index = self
   return o
+end
+
+-- this system is really placeholder until we figure out what works best for this game
+function Object:getSprite()
+  if self.type == "pokemon" then
+    return sprites["overworld/objects/pokemon/" .. self.sprite]
+  else
+    return sprites["overworld/objects/" .. (self.sprite or self.type)]
+  end
 end
 
 function Object:move(x, y, instant)

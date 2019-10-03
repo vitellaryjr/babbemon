@@ -13,17 +13,17 @@ function scene:load()
     for y = 0, self.height-1 do
       self.tiles[pair(x,y)] = "grass"
       if math.random() < 0.05 then
-        table.insert(self.objects, Object:new("tall_grass", {x=x, y=y}))
+        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.49, pivot={x=0.5, y=1}}))
+        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.99, pivot={x=0.5, y=1}}))
       end
     end
   end
 
   -- player is bab for testing bc ofc it is
-  self.player = Object:new("pokemon", {pokemon="bab"})
+  self.player = Object:new("pokemon", {sprite="bab", x=0.5, y=0.5})
   table.insert(self.objects, self.player)
 
   self.camera = {x=0.5, y=0.5, zoom=2}
-  self.camera.draw = copyTable(self.camera)
 
   self.moving = nil
 end
@@ -52,20 +52,22 @@ function scene:update(dt)
         self.player:rotate(dir)
 
         -- silly shake effect just for fun
-        for _,grass in ipairs(getObjectsOnTile(new_x, new_y, {exclude=self.player})) do
-          grass.draw.shake = 3
+        for _,grass in ipairs(getObjectsOnTile(new_x, new_y, {type="tall_grass"})) do
+          grass.draw.shake = 2
           addTween(tween.new(0.4, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
         end
       end
     end
   end
 
-  local cam_x, cam_y = self.player.x + 0.5, self.player.y + 0.5
+  --[[local cam_x, cam_y = self.player.x + 0.5, self.player.y + 0.5
   if self.camera.x ~= cam_x or self.camera.y ~= cam_y then
     self.camera.x = cam_x
     self.camera.y = cam_y
     addTween(tween.new(0.5, self.camera.draw, {x = cam_x, y = cam_y}, "outCubic"), "move:camera")
-  end
+  end]]
+  self.camera.x = self.player.draw.x
+  self.camera.y = self.player.draw.y
 end
 
 function scene:draw(dt)
@@ -73,8 +75,8 @@ function scene:draw(dt)
 
   love.graphics.push()
   love.graphics.translate(love.graphics.getWidth()/2, love.graphics.getHeight()/2)
-  love.graphics.scale(self.camera.draw.zoom)
-  love.graphics.translate(-self.camera.draw.x*tile_size, -self.camera.draw.y*tile_size)
+  love.graphics.scale(self.camera.zoom)
+  love.graphics.translate(-self.camera.x*tile_size, -self.camera.y*tile_size)
 
   for x = 0, self.width-1 do
     for y = 0, self.height-1 do
@@ -82,25 +84,23 @@ function scene:draw(dt)
     end
   end
 
-  for _,object in ipairs(self.objects) do
-    local sprite
-    if object.type == "pokemon" then
-      sprite = sprites["overworld/objects/pokemon/" .. object.pokemon]
-    else
-      sprite = sprites["overworld/objects/" .. object.type]
-    end
+  local sorted = {}
+  for k,v in pairs(self.objects) do table.insert(sorted, v) end
+  table.sort(sorted, function(a, b) 
+    return a.layer <= b.layer and a.draw.y < b.draw.y
+  end)
+  for _,object in ipairs(sorted) do
+    local sprite = object:getSprite()
 
     love.graphics.push()
     love.graphics.translate(object.draw.x*tile_size, object.draw.y*tile_size)
-    love.graphics.translate(tile_size/2, tile_size/2)
     love.graphics.rotate(math.rad(object.draw.rotation))
     love.graphics.scale(object.draw.scalex, object.draw.scaley)
-    love.graphics.translate(-tile_size/2, -tile_size/2)
 
     local ox = math.random() * object.draw.shake
     local oy = math.random() * object.draw.shake
 
-    love.graphics.draw(sprite, ox, oy)
+    love.graphics.draw(sprite, ox - sprite:getWidth()*object.pivot.x, oy - sprite:getHeight()*object.pivot.y)
 
     love.graphics.pop()
   end
