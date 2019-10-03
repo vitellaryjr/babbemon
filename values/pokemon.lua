@@ -425,6 +425,22 @@ poke = {
     growth = "medium_slow",
   },
   {
+    name = "spoder",
+    types = {"dark","poison"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 180,
+    expy = 72,
+    able = {
+      first = "poison_touch",
+      second = "compound_eyes",
+      hidden = "frisk",
+    },
+    egg = {"insect"},
+    growth = "medium_fast",
+  },
+  {
     name = "magnemite",
     types = {"steel","electric"},
     gendm = 0.5,
