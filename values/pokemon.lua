@@ -408,6 +408,22 @@ poke = {
     egg = {"amorphous"},
     growth = "medium_slow",
   },
+   {
+    name = "ripof",
+    types = {"you","normal"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 100,
+    expy = 90,
+    able = {
+      first = "download",
+      second = "pixilate",
+      hidden = "simple",
+    },
+    egg = {"amorphous"},
+    growth = "medium_fast",
+  },
   {
     name = "oddish",
     types = {"grass","poison"},
