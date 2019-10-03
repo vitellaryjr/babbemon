@@ -36,14 +36,14 @@ function scene:update(dt)
 
       -- manual direction check for now
       local dir
-      if self.moving.x == 1  and self.moving.y == 0  then dir = 0 end
-      if self.moving.x == 1  and self.moving.y == 1  then dir = 1 end
-      if self.moving.x == 0  and self.moving.y == 1  then dir = 2 end
-      if self.moving.x == -1 and self.moving.y == 1  then dir = 3 end
-      if self.moving.x == -1 and self.moving.y == 0  then dir = 4 end
-      if self.moving.x == -1 and self.moving.y == -1 then dir = 5 end
-      if self.moving.x == 0  and self.moving.y == -1 then dir = 6 end
-      if self.moving.x == 1  and self.moving.y == -1 then dir = 7 end
+      if self.moving.x == 1  and self.moving.y == 0  then dir = 1 end
+      if self.moving.x == 1  and self.moving.y == 1  then dir = 2 end
+      if self.moving.x == 0  and self.moving.y == 1  then dir = 3 end
+      if self.moving.x == -1 and self.moving.y == 1  then dir = 4 end
+      if self.moving.x == -1 and self.moving.y == 0  then dir = 5 end
+      if self.moving.x == -1 and self.moving.y == -1 then dir = 6 end
+      if self.moving.x == 0  and self.moving.y == -1 then dir = 7 end
+      if self.moving.x == 1  and self.moving.y == -1 then dir = 8 end
 
       local new_x = self.player.x + self.moving.x
       local new_y = self.player.y + self.moving.y

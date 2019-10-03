@@ -47,6 +47,7 @@ end
 
 -- i know you dont want this but just for fun: bab style rotation
 function Object:rotate(dir, instant)
+  dir = dir - 1
   self.dir = dir
 
   local rotation = dir * 45
