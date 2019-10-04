@@ -393,6 +393,22 @@ poke = {
     growth = "medium_fast",
   },
    {
+    name = "bup",
+    types = {"push","normal"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 220,
+    expy = 62,
+    able = {
+      first = "simple",
+      second = "quick_feet",
+      hidden = "run_away",
+    },
+    egg = {"humanoid"},
+    growth = "fast",
+  },
+   {
     name = "migri",
     types = {"you","defeat"},
     gendm = 0.5,
