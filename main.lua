@@ -11,6 +11,7 @@ require "battle/game"
 require "overworld/game"
 require "overworld/object"
 require "overworld/shop"
+require "overworld/undo"
 
 -- lily's opinion: maybe gooi shouldn't be used? it disappoints me that it cant be scaled by graphics transforms
 -- but also my custom ui system from bab still isn't complete so there's not really the perfect option yet

@@ -7,7 +7,7 @@ function Object:new(type, o)
   o.sprite = o.sprite
   o.x = o.x or 0
   o.y = o.y or 0
-  o.dir = o.dir or 0
+  o.dir = o.dir or 1
   o.layer = o.layer or 0
   o.pivot = o.pivot or {x = 0.5, y = 0.5}
 
@@ -17,7 +17,7 @@ function Object:new(type, o)
     scalex = o.draw and o.draw.scalex or 1,
     scaley = o.draw and o.draw.scaley or 1,
     shake = o.draw and o.draw.shake or 0,
-    rotation = o.draw and o.draw.rotation or o.dir*45
+    rotation = o.draw and o.draw.rotation or (o.dir-1)*45
   }
 
   setmetatable(o, self)
@@ -47,10 +47,9 @@ end
 
 -- i know you dont want this but just for fun: bab style rotation
 function Object:rotate(dir, instant)
-  dir = dir - 1
   self.dir = dir
 
-  local rotation = dir * 45
+  local rotation = (dir - 1) * 45
   self.draw.rotation = self.draw.rotation % 360
   if instant then
     self.draw.rotation = rotation

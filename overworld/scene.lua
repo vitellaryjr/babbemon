@@ -5,6 +5,7 @@ local move_delay = 0.2
 
 function scene:load()
   self.objects = {}
+  self.undo_buffer = {}
 
   self.width = 100
   self.height = 75
@@ -48,6 +49,7 @@ function scene:update(dt)
       local new_x = self.player.x + self.moving.x
       local new_y = self.player.y + self.moving.y
       if inBounds(new_x, new_y) then
+        addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir)
 
@@ -109,6 +111,9 @@ function scene:draw(dt)
 end
 
 function scene:keyPressed(key)
+  if key == "z" then
+    doUndo()
+  end
   self:updateMoving()
 end
 
