@@ -6,6 +6,7 @@ local move_delay = 0.2
 function scene:load()
   self.objects = {}
   self.undo_buffer = {}
+  self.turn = 1
 
   self.width = 100
   self.height = 75
@@ -34,7 +35,7 @@ function scene:update(dt)
     self.moving.time = self.moving.time - dt
     if self.moving.time <= 0 then
       self.moving.time = self.moving.time + move_delay
-
+      
       -- manual direction check for now
       local dir
       if self.moving.x == 1  and self.moving.y == 0  then dir = 1 end
@@ -45,10 +46,12 @@ function scene:update(dt)
       if self.moving.x == -1 and self.moving.y == -1 then dir = 6 end
       if self.moving.x == 0  and self.moving.y == -1 then dir = 7 end
       if self.moving.x == 1  and self.moving.y == -1 then dir = 8 end
-
+      
       local new_x = self.player.x + self.moving.x
       local new_y = self.player.y + self.moving.y
+      local moved = false
       if self.player:canMove(new_x, new_y) then
+        moved = true
         addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir)
@@ -58,6 +61,9 @@ function scene:update(dt)
           grass.draw.shake = 2
           addTween(tween.new(0.4, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
         end
+      end
+      if moved then
+        self.turn = self.turn+1
       end
     end
   end
