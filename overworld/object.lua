@@ -10,6 +10,7 @@ function Object:new(type, o)
   o.dir = o.dir or 1
   o.layer = o.layer or 0
   o.pivot = o.pivot or {x = 0.5, y = 0.5}
+  o.push = o.push or false
 
   o.draw = {
     x = o.draw and o.draw.x or o.x,
@@ -43,6 +44,11 @@ function Object:move(x, y, instant)
   else
     addTween(tween.new(0.1, self.draw, {x = self.x, y = self.y}), "move:" .. tostring(self))
   end
+  -- silly shake effect just for fun
+  for _,grass in ipairs(getObjectsOnTile(x, y, {type="tall_grass"})) do
+    grass.draw.shake = 2
+    addTween(tween.new(0.4, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
+  end
 end
 
 -- i know you dont want this but just for fun: bab style rotation
@@ -69,5 +75,21 @@ function Object:rotate(dir, instant)
 end
 
 function Object:canMove(x,y)
-  return inBounds(x,y)
+  local result = true
+  local stuff = getObjectsOnTile(x,y)
+  local dx,dy = x-self.x,y-self.y
+  for _,thing in ipairs(stuff) do
+    if thing.push then
+      if thing:canMove(thing.x+dx,thing.y+dy) then
+        addUndo{"update",thing,thing.x,thing.y,1}
+        thing:move(thing.x+dx,thing.y+dy)
+      else
+        result = false
+      end
+    end
+  end
+  if not inBounds(x,y) then
+    result = false
+  end
+  return result
 end

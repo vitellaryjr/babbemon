@@ -18,6 +18,9 @@ function scene:load()
         table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.49, pivot={x=0.5, y=1}}))
         table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.99, pivot={x=0.5, y=1}}))
       end
+      if math.random() < 0.02 then
+        table.insert(self.objects, Object:new("roc", {x = x+0.5, y = y+0.5, push = true}))
+      end
     end
   end
 
@@ -55,12 +58,6 @@ function scene:update(dt)
         addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir)
-
-        -- silly shake effect just for fun
-        for _,grass in ipairs(getObjectsOnTile(new_x, new_y, {type="tall_grass"})) do
-          grass.draw.shake = 2
-          addTween(tween.new(0.4, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
-        end
       end
       if moved then
         self.turn = self.turn+1

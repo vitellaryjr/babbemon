@@ -1,15 +1,16 @@
 function doUndo()
-  local undos = overworld.undo_buffer[overworld.turn-1]
   overworld.turn = overworld.turn - 1
+  local undos = overworld.undo_buffer[overworld.turn]
   if undos == nil or #undos == 0 then return end
-  for _,v in ipairs(undos) do
+  for i=#undos,1,-1 do
+    local v = undos[i]
     local reason = v[1]
     if reason == "update" then
       v[2]:move(v[3],v[4])
       v[2]:rotate(v[5])
     end
+    table.remove(undos,i)
   end
-  table.remove(undos,1)
 end
 
 function addUndo(data)
