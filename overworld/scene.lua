@@ -48,7 +48,7 @@ function scene:update(dt)
 
       local new_x = self.player.x + self.moving.x
       local new_y = self.player.y + self.moving.y
-      if inBounds(new_x, new_y) then
+      if self.player:canMove(new_x, new_y) then
         addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir)

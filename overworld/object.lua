@@ -67,3 +67,7 @@ function Object:rotate(dir, instant)
     addTween(tween.new(0.1, self.draw, {rotation = rotation}), "rotate:" .. tostring(self))
   end
 end
+
+function Object:canMove(x,y)
+  return inBounds(x,y)
+end
