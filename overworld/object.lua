@@ -28,7 +28,7 @@ end
 -- this system is really placeholder until we figure out what works best for this game
 function Object:getSprite()
   if self.type == "pokemon" then
-    return sprites["overworld/objects/pokemon/" .. self.sprite]
+    return sprites["overworld/pokemon/" .. self.sprite]
   else
     return sprites["overworld/objects/" .. (self.sprite or self.type)]
   end
