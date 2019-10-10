@@ -166,3 +166,9 @@ function love.keyreleased(key)
     scene:keyReleased(key)
   end
 end
+
+function love.mousepressed(x, y, button)
+  if loaded_scene and scene.mousePressed then
+    scene:mousePressed(x, y, button)
+  end
+end

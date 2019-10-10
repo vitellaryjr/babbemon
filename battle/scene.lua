@@ -5,6 +5,8 @@ function scene:load()
   self.poke2 = poke[love.math.random(1,#poke)]
   self.poke1shiny = love.math.random(1,4096) == 1
   self.poke2shiny = love.math.random(1,4096) == 1
+  self.desc1 = false
+  self.desc2 = false
 
   self.searching = false
   self.searchstr = ""
@@ -80,12 +82,22 @@ function scene:draw(dt)
     texty = 380
   end
   
-  love.graphics.printf("press r to refresh pokemon",450,texty,500)
-  love.graphics.printf("press s to set pokemon to shiny",450,texty+30,500)
-  if self.searching then
-    love.graphics.printf("searching: "..self.searchstr,450,texty+60,500)
-  else
-    love.graphics.printf("press ctrl+f to search for a specific pokemon",450,texty+60,500)
+  if self.desc1 then
+    love.graphics.printf(self.poke1.desc,475,texty,200)
+  end
+  if self.desc2 then
+    love.graphics.printf(self.poke2.desc,75,50,200)
+  end
+  
+  if not self.desc1 then
+    love.graphics.printf("press r to refresh pokemon",450,texty,500)
+    love.graphics.printf("press s to set pokemon to shiny",450,texty+30,500)
+    if self.searching then
+      love.graphics.printf("searching: "..self.searchstr,450,texty+60,500)
+    else
+      love.graphics.printf("press ctrl+f to search for a specific pokemon",450,texty+60,500)
+    end
+    love.graphics.printf("click on a pokemon to read its description",450,texty+90,500)
   end
 end
 
@@ -126,6 +138,8 @@ function scene:keyPressed(key)
       if keydown["ctrl"] then
         self.poke1shiny = love.math.random(1,4096) == 1
         self.poke2shiny = love.math.random(1,4096) == 1
+        self.desc1 = false
+        self.desc2 = false
       end
     end
     if key == "s" then
@@ -153,6 +167,30 @@ function scene:keyPressed(key)
       self.test_starttime = love.timer.getTime()
       self.spritetest = true
       doSpriteTest(true)
+    end
+  end
+end
+
+function scene:mousePressed(x,y,button)
+  if x > 384 then
+    if self.poke1.name == "debil" then
+      if x > 450 and x < 750 and y > 150 and y < 300 then
+        self.desc1 = not self.desc1
+      end
+    else
+      if x > 450 and x < 750 and y < 225 then
+        self.desc1 = not self.desc1
+      end
+    end
+  else
+    if self.poke2.name == "debil" then
+      if x > 25 and x < 325 and y > 325 and y < 475 then
+        self.desc2 = not self.desc2
+      end
+    else
+      if x > 25 and x < 325 and y > 175 and y < 325 then
+        self.desc2 = not self.desc2
+      end
     end
   end
 end
