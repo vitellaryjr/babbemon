@@ -117,6 +117,9 @@ function scene:keyPressed(key)
   if key == "z" then
     doUndo()
   end
+  if key == "r" then
+    loadScene(self)
+  end
   self:updateMoving()
 end
 
