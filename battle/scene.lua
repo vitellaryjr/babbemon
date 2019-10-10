@@ -42,6 +42,14 @@ function scene:draw(dt)
     p2h = p2draw:getHeight()
   end
   
+  if self.poke1.name == "debil" then
+    love.graphics.draw(p1draw,534,200)
+  end
+  
+  if self.poke2.name == "debil" then
+    love.graphics.draw(p2draw,109,300)
+  end
+  
   love.graphics.setLineWidth(4)
   love.graphics.setColor(0.2,0.2,0.2,1)
   love.graphics.ellipse("fill",600,150,150,75)
@@ -53,22 +61,31 @@ function scene:draw(dt)
   
   love.graphics.setColor(1,1,1,1)
   if p1draw then
-    love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
+    if self.poke1.name ~= "debil" then
+      love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
+    end
   else
     print("this opponent failed: "..(self.poke1shiny and "shiny " or "")..self.poke1.name)
   end
   if p2draw then
-    love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
+    if self.poke2.name ~= "debil" then
+      love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
+    end
   else
     print("this player failed: "..(self.poke2shiny and "shiny " or "")..self.poke2.name)
   end
   
-  love.graphics.printf("press r to refresh pokemon",450,250,500)
-  love.graphics.printf("press s to set pokemon to shiny",450,280,500)
+  local texty = 250
+  if self.poke1.name == "debil" then
+    texty = 380
+  end
+  
+  love.graphics.printf("press r to refresh pokemon",450,texty,500)
+  love.graphics.printf("press s to set pokemon to shiny",450,texty+30,500)
   if self.searching then
-    love.graphics.printf("searching: "..self.searchstr,450,310,500)
+    love.graphics.printf("searching: "..self.searchstr,450,texty+60,500)
   else
-    love.graphics.printf("press ctrl+f to search for a specific pokemon",450,310,500)
+    love.graphics.printf("press ctrl+f to search for a specific pokemon",450,texty+60,500)
   end
 end
 
