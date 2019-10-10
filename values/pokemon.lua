@@ -29,9 +29,10 @@ poke = {
     able = lists the first, second and hidden abilities that the pokemon can have. if the pokemon can only have 1 ability, then both first and second need to be that ability
     egg = numbers corresponding to the egg groups that the pokemon is in. numbers are found above in egg_group
     growth = how quickly the pokemon goes between levels. options are "fast", "medium_fast", "medium_slow", "slow", "erratic", and "fluctuating" https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
+    desc = description of the pokemon that will appear in the babbedex
     attacks = list of attacks the pokemon can learn, by level. example:
     {
-      "tm" = {
+      tm = {
         "swim",
       },
       "evolve" = {
@@ -62,10 +63,11 @@ poke = {
     egg = {"field"},
     growth = "medium_slow",
     attacks = {},
+    desc = "a commonly found pokemon, babs have an obsession with pushing the words found in the world. maybe it knows what to do with them.",
   },
   {
     name = "babi",
-    types = {"you","psychic"},
+    types = {"you","dark"},
     gendm = 0.1,
     gendf = 0.88,
     gaypb = 0.7,
@@ -78,10 +80,11 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
+    desc = "in a fit of inspiration, bab grew another eye.",
   },
   {
     name = "babber",
-    types = {"you","psychic"},
+    types = {"you","dark"},
     gendm = 0.1,
     gendf = 0.88,
     gaypb = 0.7,
@@ -94,6 +97,7 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_slow",
+    desc = "it's rumored that babber is actually the bab attempting to split into two babs, because babs like company. bab doesn't seem upset about this outcome though.",
   },
   {
     name = "keek",
@@ -110,6 +114,7 @@ poke = {
     },
     egg = {"inorganic"},
     growth = "medium_slow",
+    desc = "a red pokemon that took the form of a key because it felt like it.",
   },
   {
     name = "meem",
@@ -126,11 +131,12 @@ poke = {
     },
     egg = {"humanoid"},
     growth = "medium_slow",
+    desc = "meems are naturally very intelligent, often being found reading books if it has the chance.",
   },
   {
     name = "kat",
     types = {"you"},
-    gendm = 0.05,
+    gendm = 0,
     gendf = 0.95,
     gaypb = 0.3,
     catch = 90,
@@ -139,11 +145,12 @@ poke = {
     egg = {"field"},
     growth = "medium_slow",
     attacks = {},
+    desc = "kats travel together, often taking in babs and flofs into their groups too. researchers are unsure why they share such strong bonds.",
   },
   {
     name = "copkat",
     types = {"you","fighting"},
-    gendm = 0.05,
+    gendm = 0,
     gendf = 0.95,
     gaypb = 0.3,
     catch = 90,
@@ -152,12 +159,13 @@ poke = {
     egg = {"field"},
     growth = "medium_slow",
     attacks = {},
+    desc = "a kat that learned independence, now capable of fighting by itself. it still keeps in touch with its friends.",
   },
   {
     name = "flof",
     types = {"you"},
-    gendm = 0.88,
-    gendf = 0.1,
+    gendm = 0.95,
+    gendf = 0,
     gaypb = 0.7,
     catch = 90,
     expy = 72,
@@ -169,12 +177,13 @@ poke = {
     egg = {"field"},
     growth = "medium_slow",
     attacks = {},
+    desc = "they have very small legs hidden under their fluff. when walking, they appear to just slide over. it's adorable.",
   },
   {
     name = "furlof",
     types = {"you","water"},
-    gendm = 0.88,
-    gendf = 0.1,
+    gendm = 0.95,
+    gendf = 0,
     gaypb = 0.7,
     catch = 45,
     expy = 90,
@@ -186,6 +195,7 @@ poke = {
     egg = {"field"},
     growth = "medium_slow",
     attacks = {},
+    desc = "a flof taking on a more aquatic form, capable of breathing underwater.",
   },
   {
     name = "skul",
@@ -201,6 +211,7 @@ poke = {
     },
     egg = {"undead"},
     growth = "medium_slow",
+    desc = "skuls don't move very often, preferring to be obstacles. they don't object when pushed around, however.",
   },
   {
     name = "skulnbon",
@@ -216,6 +227,7 @@ poke = {
     },
     egg = {"undead"},
     growth = "medium_slow",
+    desc = "a skul that has grown limbs. slightly more mobile than its previous stage, but it's lazy.",
   },
   {
     name = "kirb",
@@ -231,6 +243,7 @@ poke = {
     },
     egg = {"amorphous","humanoid"},
     growth = "fast",
+    desc = "its insides are actually infinite void. it is capable of sucking air in rapidly, creating an incredible wind force that pulls in its enemies, to make it later.",
   },
   {
     name = "ghost fren",
@@ -247,6 +260,7 @@ poke = {
     },
     egg = {"amorphous","undead"},
     growth = "medium_fast",
+    desc = "often feared because it is ghost type, it tries its hardest to become friends with people. when someone does become friends, they become overjoyed.",
   },
   {
     name = "wog",
@@ -263,6 +277,7 @@ poke = {
     },
     egg = {"bird"},
     growth = "medium_slow",
+    desc = "a flightless bird that can occassionally be seen walking with exactly one other. scientists are working 24/7 to figure out the plural form of its name.",
   },
   {
     name = "wogotch",
@@ -279,6 +294,7 @@ poke = {
     },
     egg = {"bird"},
     growth = "medium_slow",
+    desc = "a wogotch can always be seen traveling with one other wogotch. just when scientists think they figured out wog's plural, this evolution comes by and throws everything off.",
   },
   {
     name = "snoboy",
@@ -295,6 +311,7 @@ poke = {
     },
     egg = {"inorganic"},
     growth = "medium_fast",
+    desc = "it wears its hat to protect it from the sun. while the hat itself doesn't do much, the propeller can spin to cool it down.",
   },
   {
     name = "snoman",
@@ -311,6 +328,7 @@ poke = {
     },
     egg = {"inorganic"},
     growth = "medium_fast",
+    desc = "a grown up snoboy, it has developed a tolerance for the sun, so it no longer needs the propeller. its hat is more of a fashion thing.",
   },
   {
     name = "wurm",
@@ -327,6 +345,7 @@ poke = {
     },
     egg = {"insect"},
     growth = "fast",
+    desc = "it can burrow in the ground, liking the coziness of the dirt. it sleeps a lot because it's just so comfy down in the earth.",
   },
   {
     name = "sneel",
@@ -343,6 +362,7 @@ poke = {
     },
     egg = {"aquatic"},
     growth = "medium_fast",
+    desc = "although very slow, its goal is to eventually be the fastest sneel of them all.",
   },
   {
     name = "sneelectric",
@@ -359,6 +379,7 @@ poke = {
     },
     egg = {"aquatic"},
     growth = "medium_fast",
+    desc = "sneelectric is created through a sneel's willpower to be fast. it's very sad when it discovers that other sneels do this too.",
   },
    {
     name = "fishe",
@@ -375,13 +396,14 @@ poke = {
     },
     egg = {"aquatic"},
     growth = "medium_fast",
+    desc = "unlike most fish, fishe don't travel in schools. however, they follow a very specific migration route that causes every fishe to meet every other.",
   },
    {
     name = "starrfishe",
     types = {"water"},
-    gendm = 0.5,
-    gendf = 0.5,
-    gaypb = 0,
+    gendm = 0.3,
+    gendf = 0.7,
+    gaypb = 0.7,
     catch = 200,
     expy = 72,
     able = {
@@ -391,6 +413,7 @@ poke = {
     },
     egg = {"aquatic"},
     growth = "medium_fast",
+    desc = "very immobile. it often will try to convince other creatures to take it with them, because it likes to travel.",
   },
    {
     name = "bup",
@@ -407,12 +430,13 @@ poke = {
     },
     egg = {"humanoid"},
     growth = "fast",
+    desc = "a tortured being that doesn't know what to do with its existence. it screams constantly.",
   },
    {
     name = "migri",
     types = {"you","defeat"},
     gendm = 0.5,
-    gendf = 0.5,
+    gendf = 0,
     gaypb = 0,
     catch = 80,
     expy = 100,
@@ -423,6 +447,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_slow",
+    desc = "a strange creature of unknown origin. many people have reported them disappearing before their eyes in a puff of purple dust.",
   },
    {
     name = "ripof",
@@ -439,6 +464,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_fast",
+    desc = "it closely follows other pokemon, and when they fall asleep, it steals whatever belongings it may have. it is not uncommon to find coins floating around inside it.",
   },
   {
     name = "oddish",
@@ -455,13 +481,14 @@ poke = {
     },
     egg = {"plant"},
     growth = "medium_slow",
+    desc = "despite being a plant, it dislikes the sun, and will bury itself in the ground during the day. it enjoys the moonlight.",
   },
   {
     name = "spoder",
     types = {"dark","poison"},
-    gendm = 0.5,
-    gendf = 0.5,
-    gaypb = 0,
+    gendm = 0.4,
+    gendf = 0.6,
+    gaypb = 0.1,
     catch = 180,
     expy = 72,
     able = {
@@ -471,6 +498,7 @@ poke = {
     },
     egg = {"insect"},
     growth = "medium_fast",
+    desc = "they can be found in old ruins, crawling between the cracks in the walls.",
   },
   {
     name = "magnemite",
@@ -487,12 +515,13 @@ poke = {
     },
     egg = {"cant"},
     growth = "medium_fast",
+    desc = "if there's a power outage, check your supply. it's very likely magnemites have attached themselves to it and are eating the energy. it's their favorite snack.",
   },
   {
     name = "beldum",
     types = {"steel","psychic"},
-    gendm = 0.5,
-    gendf = 0.5,
+    gendm = 0.2,
+    gendf = 0.2,
     gaypb = 0,
     catch = 3,
     expy = 60,
@@ -503,6 +532,7 @@ poke = {
     },
     egg = {"cant"},
     growth = "slow",
+    desc = "magnetism flows through its body, cancelling the earth's natural pull and causing it to float. give it a magnet if it's sad, it likes those",
   },
   {
     name = "sentret",
@@ -519,6 +549,7 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_fast",
+    desc = "very nervous, stands on its tail to look out for danger. can't sleep if it's lonely because it's scared for its friends.",
   },
   {
     name = "eevee",
@@ -535,6 +566,7 @@ poke = {
     },
     egg = {"field"},
     growth = "medium_fast",
+    desc = "it has unstable genes, allowing it to evolve into whatever its surroundings mold it into. very accepting of others.",
   },
   {
     name = "koffing",
@@ -551,6 +583,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_fast",
+    desc = "filled with volatile gas that keeps it afloat. if it gets too warm, it can explode! be careful and take care of it.",
   },
   {
     name = "shuppet",
@@ -567,6 +600,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_fast",
+    desc = "feeds on vengeful emotions. there's a saying that goes like \"don't trust people with shuppets\" or something.",
   },
   {
     name = "litwick",
@@ -583,6 +617,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_slow",
+    desc = "absorbs the life force of people and pokemon around it, using it as fuel for its candle... but it's so cute so you gotta trust it.",
   },
   {
     name = "lampent",
@@ -599,6 +634,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_slow",
+    desc = "it waits near places where people are going to die to absord their spirits. kinda mean.",
   },
   {
     name = "angle",
@@ -611,6 +647,7 @@ poke = {
     able = {},
     egg = {"humanoid"},
     growth = "medium_fast",
+    desc = "angles emit bright light from them, illuminating dark areas. they are very trusting, believing everything can be good and pure.",
   },
   {
     name = "debil",
@@ -623,6 +660,7 @@ poke = {
     able = {},
     egg = {"humanoid"},
     growth = "medium_fast",
+    desc = "they emit a fiery light from them, illuminating dark areas. they are tricksters, and try to corrupt anything they can.",
   },
   {
     name = "solosis",
@@ -639,6 +677,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_slow",
+    desc = "their bodies are surrounded in a special liquid, protecting them from even the most severe conditions.",
   },
   {
     name = "duosion",
@@ -655,6 +694,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_slow",
+    desc = "since it has two brains, it may try to do two things at once. if they agree on something, their psychic ability is maximized.",
   },
   {
     name = "dratini",
@@ -671,6 +711,7 @@ poke = {
     },
     egg = {"aquatic","dragon"},
     growth = "slow",
+    desc = "formerly thought to be a myth until a fisherman found a colony in a small lake. they are rare to find, but if you do, you can expect a family nearby.",
   },
   {
     name = "azurill",
@@ -687,6 +728,7 @@ poke = {
     },
     egg = {"cant"},
     growth = "fast",
+    desc = "it enjoys playing with its tail, bouncing around with it and throwing it. one azurill managed to launch itself 33 feet by spinning its tail really fast and letting it carry them forward.",
   },
   {
     name = "drifloon",
@@ -703,12 +745,13 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "fluctuating",
+    desc = "tricks children into grabbing onto it, then tries to float away with them. all the kids know this though, no one's tricked by it anymore.",
   },
   {
     name = "spiritomb",
     types = {"ghost","dark"},
-    gendm = 0.5,
-    gendf = 0.5,
+    gendm = 0.1,
+    gendf = 0.1,
     gaypb = 0,
     catch = 100,
     expy = 170,
@@ -719,6 +762,7 @@ poke = {
     },
     egg = {"amorphous"},
     growth = "medium_fast",
+    desc = "it's bound to a fissure in an old keystone for sins committed 500 years ago. you gotta wonder what it did to deserve that.",
   },
   {
     name = "pyukumuku",
@@ -735,6 +779,7 @@ poke = {
     },
     egg = {"aquatic"},
     growth = "fast",
+    desc = "it can eject its internal organs to attack others. it has become a tradition to yeet pyukumuku back into their homes after a storm, where they wash ashore. szoob's favorite pokemon",
   },
   {
     name = "baba",
@@ -752,6 +797,7 @@ poke = {
     },
     egg = {"cant"},
     growth = "slow",
+    desc = "a pokemon from a realm beyond ours. it's rumored that its home is where everything originated, but something went wrong and we're in this place instead.",
   },
   {
     name = "missingno.",
@@ -769,6 +815,7 @@ poke = {
     },
     egg = {"cant"},
     growth = "erratic",
+    desc = "desc ="
   },
   {
     name = "indexnil",
@@ -785,6 +832,7 @@ poke = {
     },
     egg = {"cant"},
     growth = "erratic",
+    desc = "{}"
   },
 }
 
