@@ -15,19 +15,26 @@ function scene:load()
     for y = 0, self.height-1 do
       self.tiles[pair(x,y)] = "grass"
       if math.random() < 0.05 then
-        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.49, pivot={x=0.5, y=1}}))
-        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.99, pivot={x=0.5, y=1}}))
+        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.49, pivot={x=0.5, y=1}, layer=3}))
+        table.insert(self.objects, Object:new("tall_grass", {x = x+0.5, y = y+0.99, pivot={x=0.5, y=1}, layer=7}))
       end
       if math.random() < 0.02 then
-        table.insert(self.objects, Object:new("roc", {x = x+0.5, y = y+0.5, push = true}))
+        table.insert(self.objects, Object:new("roc", {x = x+0.5, y = y+0.5, layer = 5, push = true}))
       end
     end
   end
+  
+  self.shiny = false
+  
+  -- pokemon that follows the player around
+  local follower = table.random(poke)
+  self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=0.5, y=0.5, layer=4})
+  table.insert(self.objects, self.follow)
 
   -- player is bab for testing bc ofc it is
-  self.player = Object:new("pokemon", {sprite="bab", x=0.5, y=0.5})
+  self.player = Object:new("pokemon", {sprite="bab", x=0.5, y=0.5, layer=5})
   table.insert(self.objects, self.player)
-
+  
   self.camera = {x=0.5, y=0.5, zoom=2}
 
   self.moving = nil
@@ -55,6 +62,11 @@ function scene:update(dt)
       local moved = false
       if self.player:canMove(new_x, new_y) then
         moved = true
+        if self.turn > 1 then
+          addUndo{"update",self.follow,self.follow.x,self.follow.y,self.follow.dir}
+          self.follow:move(self.player.x, self.player.y)
+          self.follow:rotate(self.player.dir)
+        end
         addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir)
@@ -96,6 +108,10 @@ function scene:draw(dt)
   end)
   for _,object in ipairs(sorted) do
     local sprite = object:getSprite()
+    
+    if object.sprite == "baba" then
+      sprite = sprites["overworld/pokemon/"..(self.shiny and "shiny/" or "").."baba_"..anim_stage]
+    end
 
     love.graphics.push()
     love.graphics.translate(object.draw.x*tile_size, object.draw.y*tile_size)
@@ -104,8 +120,12 @@ function scene:draw(dt)
 
     local ox = math.random() * object.draw.shake
     local oy = math.random() * object.draw.shake
-
-    love.graphics.draw(sprite, ox - sprite:getWidth()*object.pivot.x, oy - sprite:getHeight()*object.pivot.y)
+    
+    if sprite then
+      love.graphics.draw(sprite, ox - sprite:getWidth()*object.pivot.x, oy - sprite:getHeight()*object.pivot.y)
+    else
+      print("this pokemon failed to render: "..dump(object))
+    end
 
     love.graphics.pop()
   end
@@ -120,6 +140,9 @@ function scene:keyPressed(key)
   if key == "r" then
     loadScene(self)
   end
+  if key == "s" and keydown["ctrl"] then
+    self.shiny = not self.shiny
+  end
   self:updateMoving()
 end
 
@@ -128,6 +151,7 @@ function scene:keyReleased(key)
 end
 
 function scene:updateMoving()
+  if keydown["ctrl"] then return end
   local new_moving = {x=0, y=0}
   if keydown["w"] or keydown["up"] then new_moving.y = new_moving.y - 1 end
   if keydown["a"] or keydown["left"] then new_moving.x = new_moving.x - 1 end

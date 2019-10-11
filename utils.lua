@@ -105,6 +105,10 @@ function table.has_value(tab, val)
   return false
 end
 
+function table.random(tab)
+  return tab[love.math.random(1,#tab)]
+end
+
 function mergeTable(t, other)
   if other ~= nil then
     for k,v in pairs(other) do

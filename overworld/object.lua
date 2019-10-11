@@ -29,7 +29,11 @@ end
 -- this system is really placeholder until we figure out what works best for this game
 function Object:getSprite()
   if self.type == "pokemon" then
-    return sprites["overworld/pokemon/" .. self.sprite]
+    if self ~= overworld.player and (overworld.shiny or love.math.random(1,4096) == 69) then
+      return sprites["overworld/pokemon/shiny/" .. self.sprite]
+    else
+      return sprites["overworld/pokemon/" .. self.sprite]
+    end
   else
     return sprites["overworld/objects/" .. (self.sprite or self.type)]
   end
