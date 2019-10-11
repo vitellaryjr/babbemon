@@ -1,8 +1,8 @@
 local scene = {}
 
 function scene:load()
-  self.poke1 = poke[love.math.random(1,#poke)]
-  self.poke2 = poke[love.math.random(1,#poke)]
+  self.poke1 = table.random(poke)
+  self.poke2 = table.random(poke)
   self.poke1shiny = love.math.random(1,4096) == 1
   self.poke2shiny = love.math.random(1,4096) == 1
   self.desc1 = false
@@ -128,10 +128,10 @@ function scene:keyPressed(key)
       local newpoke1 = self.poke1
       local newpoke2 = self.poke2
       while newpoke1 == self.poke1 do
-        newpoke1 = poke[love.math.random(1,#poke)]
+        newpoke1 = table.random(poke)
       end
       while newpoke2 == self.poke2 do
-        newpoke2 = poke[love.math.random(1,#poke)]
+        newpoke2 = table.random(poke)
       end
       self.poke1 = newpoke1
       self.poke2 = newpoke2
