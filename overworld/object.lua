@@ -29,10 +29,20 @@ end
 -- this system is really placeholder until we figure out what works best for this game
 function Object:getSprite()
   if self.type == "pokemon" then
-    if self ~= overworld.player and (overworld.shiny or love.math.random(1,4096) == 69) then
+    if overworld.shiny or love.math.random(1,4096) == 69 then
       return sprites["overworld/pokemon/shiny/" .. self.sprite]
     else
       return sprites["overworld/pokemon/" .. self.sprite]
+    end
+  elseif self.type == "player" then
+    if self.dir == 1 then
+      return sprites["overworld/player_right"]
+    elseif self.dir == 2 or self.dir == 3 or self.dir == 4 then
+      return sprites["overworld/player_down"]
+    elseif self.dir == 5 then
+      return sprites["overworld/player_left"]
+    elseif self.dir == 6 or self.dir == 7 or self.dir == 8 then
+      return sprites["overworld/player_up"]
     end
   else
     return sprites["overworld/objects/" .. (self.sprite or self.type)]
@@ -56,9 +66,9 @@ function Object:move(x, y, instant)
 end
 
 -- i know you dont want this but just for fun: bab style rotation
-function Object:rotate(dir, instant)
+function Object:rotate(dir, instant, dont)
   self.dir = dir
-
+  if dont then return end
   local rotation = (dir - 1) * 45
   self.draw.rotation = self.draw.rotation % 360
   if instant then

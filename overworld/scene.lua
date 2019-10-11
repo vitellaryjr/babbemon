@@ -31,8 +31,7 @@ function scene:load()
   self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=0.5, y=0.5, layer=4})
   table.insert(self.objects, self.follow)
 
-  -- player is bab for testing bc ofc it is
-  self.player = Object:new("pokemon", {sprite="bab", x=0.5, y=0.5, layer=5})
+  self.player = Object:new("player", {sprite="player_right", x=0.5, y=0.5, layer=5})
   table.insert(self.objects, self.player)
   
   self.camera = {x=0.5, y=0.5, zoom=2}
@@ -69,7 +68,7 @@ function scene:update(dt)
         end
         addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
         self.player:move(new_x, new_y)
-        self.player:rotate(dir)
+        self.player:rotate(dir,false,true)
       end
       if moved then
         self.turn = self.turn+1
