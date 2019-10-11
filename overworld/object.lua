@@ -60,8 +60,8 @@ function Object:move(x, y, instant)
   end
   -- silly shake effect just for fun
   for _,grass in ipairs(getObjectsOnTile(x, y, {type="tall_grass"})) do
-    grass.draw.shake = 2
-    addTween(tween.new(0.4, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
+    grass.draw.shake = 10
+    addTween(tween.new(5, grass.draw, {shake = 0}), "shake:" .. tostring(grass))
   end
 end
 
