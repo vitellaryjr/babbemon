@@ -74,9 +74,6 @@ function love.load()
     end
   end
   addsprites()
-  if love.window.setIcon(love.image.newImageData("assets/sprites/icon.png")) then
-    print("icon changed")
-  end
   
   local end_load = love.timer.getTime()
   loadScene(overworld)
