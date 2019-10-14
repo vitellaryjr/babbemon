@@ -782,6 +782,23 @@ poke = {
     desc = "it can eject its internal organs to attack others. it has become a tradition to yeet pyukumuku back into their homes after a storm, where they wash ashore. szoob's favorite pokemon",
   },
   {
+    name = "morelull",
+    types = {"grass","fairy"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 190,
+    expy = 57,
+    able = {
+      first = "innards_out",
+      second = "innards_out",
+      hidden = "unaware",
+    },
+    egg = {"plant"},
+    growth = "medium_fast",
+    desc = "although its spores are bright and dangerous, nighttime tours where morelull can be found are quite popular. these tours are also difficult to prepare, because morelull move from tree to tree every night.",
+  },
+  {
     name = "baba",
     anim = true,
     types = {"you"},
