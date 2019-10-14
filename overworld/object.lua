@@ -30,9 +30,9 @@ end
 function Object:getSprite()
   if self.type == "pokemon" then
     if overworld.shiny or love.math.random(1,4096) == 69 then
-      return sprites["overworld/pokemon/shiny/" .. self.sprite]
+      return sprites["overworld/pokemon/shiny/" .. self.sprite] or sprites["overworld/wat_shiny"]
     else
-      return sprites["overworld/pokemon/" .. self.sprite]
+      return sprites["overworld/pokemon/" .. self.sprite] or sprites["overworld/wat"]
     end
   elseif self.type == "player" then
     if self.dir == 1 then
@@ -45,7 +45,7 @@ function Object:getSprite()
       return sprites["overworld/player_up"]
     end
   else
-    return sprites["overworld/objects/" .. (self.sprite or self.type)]
+    return sprites["overworld/objects/" .. (self.sprite or self.type)] or sprites["overworld/wat"]
   end
 end
 
