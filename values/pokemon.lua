@@ -765,6 +765,19 @@ poke = {
     desc = "it's bound to a fissure in an old keystone for sins committed 500 years ago. you gotta wonder what it did to deserve that.",
   },
   {
+    name = "err",
+    types = {"ghost","defeat"},
+    gendm = 0.1,
+    gendf = 0,
+    gaypb = 0.9,
+    catch = 80,
+    expy = 170,
+    able = {},
+    egg = {"amorphous"},
+    growth = "slow",
+    desc = "it appears in desolate areas where no other pokemon can be found, enjoying solitude. don't crowd it, it gets very nervous."
+  },
+  {
     name = "pyukumuku",
     types = {"water"},
     gendm = 0.5,
