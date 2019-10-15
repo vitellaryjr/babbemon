@@ -7,7 +7,7 @@ function doUndo()
     local reason = v[1]
     if reason == "update" then
       v[2]:move(v[3],v[4])
-      v[2]:rotate(v[5],false,v[2].type == "player")
+      v[2]:rotate(v[5],false,v[2].type == "trainer")
     end
     table.remove(undos,i)
   end

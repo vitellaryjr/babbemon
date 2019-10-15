@@ -31,7 +31,7 @@ function scene:load()
   self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=0.5, y=0.5, layer=4})
   table.insert(self.objects, self.follow)
 
-  self.player = Object:new("player", {sprite="player_right", x=0.5, y=0.5, layer=5})
+  self.player = Object:new("trainer", {sprite="player", x=0.5, y=0.5, layer=5})
   table.insert(self.objects, self.player)
   
   self.camera = {x=0.5, y=0.5, zoom=2}

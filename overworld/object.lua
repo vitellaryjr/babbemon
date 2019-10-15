@@ -34,15 +34,15 @@ function Object:getSprite()
     else
       return sprites["overworld/pokemon/" .. self.sprite] or sprites["overworld/wat"]
     end
-  elseif self.type == "player" then
+  elseif self.type == "trainer" then
     if self.dir == 1 then
-      return sprites["overworld/player_right"]
+      return sprites["overworld/"..self.sprite.."_right"]
     elseif self.dir == 2 or self.dir == 3 or self.dir == 4 then
-      return sprites["overworld/player_down"]
+      return sprites["overworld/"..self.sprite.."_down"]
     elseif self.dir == 5 then
-      return sprites["overworld/player_left"]
+      return sprites["overworld/"..self.sprite.."_left"]
     elseif self.dir == 6 or self.dir == 7 or self.dir == 8 then
-      return sprites["overworld/player_up"]
+      return sprites["overworld/"..self.sprite.."_up"]
     end
   else
     return sprites["overworld/objects/" .. (self.sprite or self.type)] or sprites["overworld/wat"]
