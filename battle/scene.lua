@@ -10,6 +10,8 @@ function scene:load()
 
   self.searching = false
   self.searchstr = ""
+  
+  self.temtime = 0
 
   self.spritetest = false
   self.test_starttime = 0
@@ -77,6 +79,21 @@ function scene:draw(dt)
     print("this player failed: "..(self.poke2shiny and "shiny " or "")..self.poke2.name)
   end
   
+  if self.poke1.name == "temmi!!!" then
+    local dx,dy = love.math.random(-1,1),love.math.random(-1,1)
+    if self.temtime ~= 0 then
+      dx = dx+math.floor(((love.timer.getTime()/self.temtime)-1)*200000)
+    end
+    love.graphics.draw(sprites["battle/temmi_face_f"],529+dx,57+dy)
+  end
+  if self.poke2.name == "temmi!!!" then
+    local dx,dy = love.math.random(-1,1),love.math.random(-1,1)
+    if self.temtime ~= 0 then
+      dx = dx-math.floor(((love.timer.getTime()/self.temtime)-1)*200000)
+    end
+    love.graphics.draw(sprites["battle/temmi_face_b"],108+dx,160+dy)
+  end
+  
   local texty = 250
   if self.poke1.name == "debil" then
     texty = 380
@@ -102,6 +119,15 @@ function scene:draw(dt)
 end
 
 function scene:keyPressed(key)
+  local specialkeys = {
+    space = " ",
+    lshift = "",
+    rshift = "",
+    lctrl = "",
+    rctrl = "",
+    lalt = "",
+    ralt = "",
+  }
   if key == "f" and keydown["ctrl"] then
     self.searching = not self.searching
   end
@@ -116,11 +142,20 @@ function scene:keyPressed(key)
       if poke[self.searchstr] then
         self.poke1 = poke[self.searchstr]
         self.poke2 = poke[self.searchstr]
+        if self.searchstr == "temmi!!!" then
+          self.temtime = love.timer.getTime()
+        else
+          self.temtime = 0
+        end
         self.searchstr = ""
         self.searching = false
       end
     elseif not keydown["ctrl"] then
-      if key == "space" then key = " " end
+      if keydown["shift"] then
+        local shifts = {"!","@","#","$","%","^","&","*"}
+        key = shifts[tonumber(key)] or key
+      end
+      key = specialkeys[key] or key
       self.searchstr = self.searchstr..key
     end
   else
@@ -135,6 +170,11 @@ function scene:keyPressed(key)
       end
       self.poke1 = newpoke1
       self.poke2 = newpoke2
+      if self.poke1.name == "temmi!!!" or self.poke2.name == "temmi!!!" then
+        self.temtime = love.timer.getTime()
+      else
+        self.temtime = 0
+      end
       if keydown["ctrl"] then
         self.poke1shiny = love.math.random(1,4096) == 1
         self.poke2shiny = love.math.random(1,4096) == 1
