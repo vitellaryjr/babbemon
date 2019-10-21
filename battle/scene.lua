@@ -69,6 +69,7 @@ function scene:draw(dt)
       love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
     end
   else
+    love.graphics.draw(sprites["battle/wat"],535,51)
     print("this opponent failed: "..(self.poke1shiny and "shiny " or "")..self.poke1.name)
   end
   if p2draw then
@@ -76,6 +77,7 @@ function scene:draw(dt)
       love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
     end
   else
+    love.graphics.draw(sprites["battle/wat"],110,151)
     print("this player failed: "..(self.poke2shiny and "shiny " or "")..self.poke2.name)
   end
   
