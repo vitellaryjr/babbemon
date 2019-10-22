@@ -583,6 +583,19 @@ poke = {
     desc = "temmi!!! she's very hyper please give lots of love!!!! !she's probably allergic to u tho so wear gloves!."
   },
   {
+    name = "steev",
+    types = {"push", "you"},
+    gendm = 0.9,
+    gendf = 0.1,
+    gaypb = 0.9,
+    catch = 45,
+    expy = 65,
+    able = {},
+    egg = {"field"},
+    growth = "medium_fast",
+    desc = "it moves very carefully, every step very calculated. it can't stand for very long without collapsing down on the floor."
+  },
+  {
     name = "koffing",
     types = {"poison"},
     gendm = 0.5,

@@ -10,6 +10,19 @@ function scene:load()
   
   self.searching = false
   self.searchstr = ""
+  
+  self.steevdone = false
+  self.grayscale = love.graphics.newShader[[
+    vec4 effect(vec4 color, Image texture, vec2 tc, vec2 pc)
+    {
+      vec4 pixel = Texel(texture, tc);
+      float gray = (pixel.r + pixel.g + pixel.b)/3;
+      pixel.r = gray;
+      pixel.g = gray;
+      pixel.b = gray;
+      return pixel;
+    }
+  ]]
 
   self.width = 100
   self.height = 75
@@ -47,8 +60,10 @@ function scene:load()
 end
 
 function scene:update(dt)
+  if self.steevdone then return end
   if self.moving then
     self.moving.time = self.moving.time - dt
+    local moved = false
     if self.moving.time <= 0 then
       self.moving.time = self.moving.time + move_delay
       
@@ -65,7 +80,6 @@ function scene:update(dt)
       
       local new_x = self.player.x + self.moving.x
       local new_y = self.player.y + self.moving.y
-      local moved = false
       if self.player:canMove(new_x, new_y) then
         moved = true
         if self.turn > 1 then
@@ -77,9 +91,15 @@ function scene:update(dt)
         self.player:move(new_x, new_y)
         self.player:rotate(dir,false,true)
       end
-      if moved then
-        self.turn = self.turn+1
-      end
+    end
+    if self.follow.sprite == "steev" and self.turn > 6 then
+      self.steevdone = true
+      addUndo{"steev",self.camera.zoom}
+      addTween(tween.new(2, self.camera, {zoom = 2.2}, "outQuad"), "steev_zoom")
+      moved = true
+    end
+    if moved then
+      self.turn = self.turn+1
     end
   end
 
@@ -100,6 +120,12 @@ function scene:draw(dt)
   love.graphics.translate(love.graphics.getWidth()/2, love.graphics.getHeight()/2)
   love.graphics.scale(self.camera.zoom)
   love.graphics.translate(-self.camera.x*tile_size, -self.camera.y*tile_size)
+  
+  if self.steevdone then
+    love.graphics.setShader(self.grayscale)
+  else
+    love.graphics.setShader()
+  end
 
   for x = 0, self.width-1 do
     for y = 0, self.height-1 do
@@ -143,11 +169,14 @@ function scene:draw(dt)
 end
 
 function scene:keyPressed(key)
-  if key == "z" then
+  if key == "z" and not self.searching then
     doUndo()
   end
-  if key == "r" then
+  if key == "r" and not self.searching then
     loadScene(self)
+  end
+  if key == "s" and keydown["ctrl"] and not self.searching then
+    self.shiny = not self.shiny
   end
   if self.searching then
     if keydown["ctrl"] then
@@ -173,9 +202,6 @@ function scene:keyPressed(key)
     end
   else
     self.searchstr = ""
-  end
-  if key == "s" and keydown["ctrl"] then
-    self.shiny = not self.shiny
   end
   if key == "f" and keydown["ctrl"] then
     self.searching = not self.searching

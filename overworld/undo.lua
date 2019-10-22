@@ -14,6 +14,12 @@ function doUndo()
       removeFromTable(overworld.objects, overworld.follow)
       overworld.follow = Object:new("pokemon", {sprite=v[2], x=v[3], y=v[4], dir=v[5], layer=4, data=v[6]})
       table.insert(overworld.objects, overworld.follow)
+    elseif reason == "steev" then
+      overworld.steevdone = false
+      tweens["steev_zoom"] = nil
+      addTween(tween.new(0.3, overworld.camera, {zoom = v[2]}, "outQuad"), "steev_zoom_undo")
+    else
+      print("unknown undo reason: "..reason)
     end
     table.remove(undos,i)
   end
