@@ -11,6 +11,7 @@ function Object:new(type, o)
   o.layer = o.layer or 0
   o.pivot = o.pivot or {x = 0.5, y = 0.5}
   o.push = o.push or false
+  o.data = o.data
 
   o.draw = {
     x = o.draw and o.draw.x or o.x,
@@ -30,10 +31,16 @@ end
 function Object:getSprite()
   local sprite
   if self.type == "pokemon" then
-    if overworld.shiny or love.math.random(1,4096) == 69 then
+    if overworld.shiny then
       sprite = sprites["overworld/pokemon/shiny/" .. self.sprite]
+      if self.data.anim then
+        sprite = sprites["overworld/pokemon/shiny/" .. self.sprite .. "_" .. anim_stage]
+      end
     else
       sprite = sprites["overworld/pokemon/" .. self.sprite]
+      if self.data.anim then
+        sprite = sprites["overworld/pokemon/" .. self.sprite .. "_" .. anim_stage]
+      end
     end
   elseif self.type == "trainer" then
     if self.dir == 1 then
@@ -50,9 +57,9 @@ function Object:getSprite()
   end
   if not sprite then
     if self.shiny then
-      sprite = sprites["overworld/wat"]
-    else
       sprite = sprites["overworld/wat_shiny"]
+    else
+      sprite = sprites["overworld/wat"]
     end
   end
   return sprite

@@ -6,8 +6,14 @@ function doUndo()
     local v = undos[i]
     local reason = v[1]
     if reason == "update" then
-      v[2]:move(v[3],v[4])
-      v[2]:rotate(v[5],false,v[2].type == "trainer")
+      local subject
+      if v[2].type == "pokemon" then subject = overworld.follow else subject = v[2] end
+      subject:move(v[3],v[4])
+      subject:rotate(v[5],false,v[2].type == "trainer")
+    elseif reason == "follow_change" then
+      removeFromTable(overworld.objects, overworld.follow)
+      overworld.follow = Object:new("pokemon", {sprite=v[2], x=v[3], y=v[4], dir=v[5], layer=4, data=v[6]})
+      table.insert(overworld.objects, overworld.follow)
     end
     table.remove(undos,i)
   end

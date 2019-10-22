@@ -7,6 +7,9 @@ function scene:load()
   self.objects = {}
   self.undo_buffer = {}
   self.turn = 1
+  
+  self.searching = false
+  self.searchstr = ""
 
   self.width = 100
   self.height = 75
@@ -24,12 +27,16 @@ function scene:load()
     end
   end
   
-  self.shiny = false
+  self.shiny = love.math.random(1,4096) == 69
   
   -- pokemon that follows the player around
   local follower = table.random(poke)
-  self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=0.5, y=0.5, layer=4})
+  self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=0.5, y=0.5, layer=4, data=copyTable(follower)})
   table.insert(self.objects, self.follow)
+  
+  if self.follow:getSprite() == sprites["overworld/wat"] then
+    print(self.follow.sprite)
+  end
 
   self.player = Object:new("trainer", {sprite="player", x=0.5, y=0.5, layer=5})
   table.insert(self.objects, self.player)
@@ -107,10 +114,6 @@ function scene:draw(dt)
   end)
   for _,object in ipairs(sorted) do
     local sprite = object:getSprite()
-    
-    if object.sprite == "baba" then
-      sprite = sprites["overworld/pokemon/"..(self.shiny and "shiny/" or "").."baba_"..anim_stage]
-    end
 
     love.graphics.push()
     love.graphics.translate(object.draw.x*tile_size, object.draw.y*tile_size)
@@ -130,6 +133,13 @@ function scene:draw(dt)
   end
 
   love.graphics.pop()
+  if self.searching then
+    if #self.searchstr > 0 then
+      love.graphics.printf(self.searchstr,2,2,9999)
+    else
+      love.graphics.printf("searching...",2,2,9999)
+    end
+  end
 end
 
 function scene:keyPressed(key)
@@ -139,8 +149,36 @@ function scene:keyPressed(key)
   if key == "r" then
     loadScene(self)
   end
+  if self.searching then
+    if keydown["ctrl"] then
+      if key == "backspace" then self.searchstr = "" end
+    else
+      if key == "return" then
+        if poke[self.searchstr] then
+          local follower = poke[self.searchstr]
+          addUndo{"follow_change",self.follow.sprite,self.follow.x,self.follow.y,self.follow.dir,self.follow.data}
+          removeFromTable(self.objects, self.follow)
+          self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=self.follow.x, y=self.follow.y, dir=self.follow.dir, layer=4, data=copyTable(follower)})
+          table.insert(self.objects, self.follow)
+          self.searchstr = ""
+          self.searching = false
+          self.turn = self.turn + 1
+        end
+      elseif key == "backspace" then
+        self.searchstr = self.searchstr:sub(1,-2)
+      else
+        if key == "space" then key = " " end
+        self.searchstr = self.searchstr..key
+      end
+    end
+  else
+    self.searchstr = ""
+  end
   if key == "s" and keydown["ctrl"] then
     self.shiny = not self.shiny
+  end
+  if key == "f" and keydown["ctrl"] then
+    self.searching = not self.searching
   end
   self:updateMoving()
 end
@@ -150,7 +188,7 @@ function scene:keyReleased(key)
 end
 
 function scene:updateMoving()
-  if keydown["ctrl"] then return end
+  if keydown["ctrl"] or self.searching then return end
   local new_moving = {x=0, y=0}
   if keydown["w"] or keydown["up"] then new_moving.y = new_moving.y - 1 end
   if keydown["a"] or keydown["left"] then new_moving.x = new_moving.x - 1 end
