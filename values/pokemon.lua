@@ -677,6 +677,32 @@ poke = {
     desc = "they emit a fiery light from them, illuminating dark areas. they are tricksters, and try to corrupt anything they can.",
   },
   {
+    name = "overdose",
+    types = {"normal"},
+    gendm = 0.6,
+    gendf = 0.4,
+    gaypb = 0.5,
+    catch = 37,
+    expy = 100,
+    able = {},
+    egg = {"humanoid","amorphous"},
+    growth = "erratic",
+    desc = "a sad being that tries to create art to please others. it has little will of its own, falling easily to peer pressure."
+  },
+  {
+    name = "detox",
+    types = {"normal"},
+    gendm = 0.4,
+    gendf = 0.6,
+    gaypb = 0.5,
+    catch = 37,
+    expy = 140,
+    able = {},
+    egg = {"humanoid","amorphous"},
+    growth = "erratic",
+    desc = "very motivated, it scribbles constantly, working not for others but for its own satisfaction. no one understands what it's doing anymore, but all that matters is that it's enjoying itself."
+  },
+  {
     name = "solosis",
     types = {"psychic"},
     gendm = 0.5,
