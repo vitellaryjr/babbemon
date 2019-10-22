@@ -28,25 +28,34 @@ end
 
 -- this system is really placeholder until we figure out what works best for this game
 function Object:getSprite()
+  local sprite
   if self.type == "pokemon" then
     if overworld.shiny or love.math.random(1,4096) == 69 then
-      return sprites["overworld/pokemon/shiny/" .. self.sprite] or sprites["overworld/wat_shiny"]
+      sprite = sprites["overworld/pokemon/shiny/" .. self.sprite]
     else
-      return sprites["overworld/pokemon/" .. self.sprite] or sprites["overworld/wat"]
+      sprite = sprites["overworld/pokemon/" .. self.sprite]
     end
   elseif self.type == "trainer" then
     if self.dir == 1 then
-      return sprites["overworld/"..self.sprite.."_right"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_right"]
     elseif self.dir == 2 or self.dir == 3 or self.dir == 4 then
-      return sprites["overworld/"..self.sprite.."_down"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_down"]
     elseif self.dir == 5 then
-      return sprites["overworld/"..self.sprite.."_left"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_left"]
     elseif self.dir == 6 or self.dir == 7 or self.dir == 8 then
-      return sprites["overworld/"..self.sprite.."_up"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_up"]
     end
   else
-    return sprites["overworld/objects/" .. (self.sprite or self.type)] or sprites["overworld/wat"]
+    sprite = sprites["overworld/objects/" .. (self.sprite or self.type)]
   end
+  if not sprite then
+    if self.shiny then
+      sprite = sprites["overworld/wat"]
+    else
+      sprite = sprites["overworld/wat_shiny"]
+    end
+  end
+  return sprite
 end
 
 function Object:move(x, y, instant)
