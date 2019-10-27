@@ -121,15 +121,6 @@ function scene:draw(dt)
 end
 
 function scene:keyPressed(key)
-  local specialkeys = {
-    space = " ",
-    lshift = "",
-    rshift = "",
-    lctrl = "",
-    rctrl = "",
-    lalt = "",
-    ralt = "",
-  }
   if key == "f" and keydown["ctrl"] then
     self.searching = not self.searching
   end
@@ -153,11 +144,23 @@ function scene:keyPressed(key)
         self.searching = false
       end
     elseif not keydown["ctrl"] then
+      local specialkeys = {
+        space = " ",
+        lshift = "",
+        rshift = "",
+        lctrl = "",
+        rctrl = "",
+        lalt = "",
+        ralt = "",
+      }
+      for i=0,9 do
+        specialkeys["kp"..i] = tostring(i)
+      end
+      key = specialkeys[key] or key
       if keydown["shift"] then
         local shifts = {"!","@","#","$","%","^","&","*"}
         key = shifts[tonumber(key)] or key
       end
-      key = specialkeys[key] or key
       self.searchstr = self.searchstr..key
     end
   else

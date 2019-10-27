@@ -5,6 +5,7 @@ function Object:new(type, o)
 
   o.type = type
   o.sprite = o.sprite
+  o.name = o.name or o.sprite
   o.x = o.x or 0
   o.y = o.y or 0
   o.dir = o.dir or 1
@@ -21,6 +22,13 @@ function Object:new(type, o)
     shake = o.draw and o.draw.shake or 0,
     rotation = o.draw and o.draw.rotation or (o.dir-1)*45
   }
+  
+  if o.name == "temmi" then
+    o.temface = {
+      x = o.draw.x,
+      y = o.draw.y
+    }
+  end
 
   setmetatable(o, self)
   self.__index = self
@@ -73,6 +81,9 @@ function Object:move(x, y, instant)
     self.draw.y = self.y
   else
     addTween(tween.new(0.1, self.draw, {x = self.x, y = self.y}), "move:" .. tostring(self))
+    if self.name == "temmi" then
+      addTween(tween.new(0.12, self.temface, {x = self.x, y = self.y}), "move face:" .. tostring(self))
+    end
   end
   -- silly shake effect just for fun
   for _,grass in ipairs(getObjectsOnTile(x, y, {type="tall_grass"})) do
@@ -82,6 +93,7 @@ function Object:move(x, y, instant)
 end
 
 -- i know you dont want this but just for fun: bab style rotation
+-- jokes on you i actually do want this, sometimes
 function Object:rotate(dir, instant, dont)
   self.dir = dir
   if dont then return end

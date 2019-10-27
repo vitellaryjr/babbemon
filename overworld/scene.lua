@@ -157,6 +157,24 @@ function scene:draw(dt)
 
     love.graphics.pop()
   end
+  
+  if self.follow.name == "temmi" then
+    local object = self.follow
+    local sprite = object:getSprite()
+    
+    love.graphics.push()
+    love.graphics.translate(object.temface.x*tile_size, object.temface.y*tile_size)
+    love.graphics.rotate(math.rad(object.draw.rotation))
+    love.graphics.scale(object.draw.scalex, object.draw.scaley)
+
+    if sprite then
+      love.graphics.draw(sprites["overworld/pokemon/temmi_face"], -(sprite:getWidth()*object.pivot.x), -(sprite:getHeight()*object.pivot.y))
+    else
+      print("this pokemon failed to render: "..dump(object))
+    end
+
+    love.graphics.pop()
+  end
 
   love.graphics.pop()
   if self.searching then
@@ -179,6 +197,23 @@ function scene:keyPressed(key)
     self.shiny = not self.shiny
   end
   if self.searching then
+    local specialkeys = {
+      space = " ",
+      lshift = "",
+      rshift = "",
+      lctrl = "",
+      rctrl = "",
+      lalt = "",
+      ralt = "",
+    }
+    for i=0,9 do
+      specialkeys["kp"..i] = tostring(i)
+    end
+    key = specialkeys[key] or key
+    if keydown["shift"] then
+      local shifts = {"!","@","#","$","%","^","&","*"}
+      key = shifts[tonumber(key)] or key
+    end
     if keydown["ctrl"] then
       if key == "backspace" then self.searchstr = "" end
     else
@@ -196,7 +231,6 @@ function scene:keyPressed(key)
       elseif key == "backspace" then
         self.searchstr = self.searchstr:sub(1,-2)
       else
-        if key == "space" then key = " " end
         self.searchstr = self.searchstr..key
       end
     end
