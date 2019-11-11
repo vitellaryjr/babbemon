@@ -83,18 +83,18 @@ function scene:update(dt)
       if self.player:canMove(new_x, new_y) then
         moved = true
         if self.turn > 1 then
-          addUndo{"update",self.follow,self.follow.x,self.follow.y,self.follow.dir}
+          addUndo{reason = "update",unit = self.follow,x = self.follow.x,y = self.follow.y,dir = self.follow.dir}
           self.follow:move(self.player.x, self.player.y)
           self.follow:rotate(self.player.dir)
         end
-        addUndo{"update",self.player,self.player.x,self.player.y,self.player.dir}
+        addUndo{reason = "update",unit = self.player,x = self.player.x,y = self.player.y,dir = self.player.dir}
         self.player:move(new_x, new_y)
         self.player:rotate(dir,false,true)
       end
     end
     if self.follow.sprite == "steev" and self.turn > 6 then
       self.steevdone = true
-      addUndo{"steev",self.camera.zoom}
+      addUndo{reason = "steev",zoom = self.camera.zoom}
       addTween(tween.new(2, self.camera, {zoom = 2.2}, "outQuad"), "steev_zoom")
       moved = true
     end
@@ -220,7 +220,7 @@ function scene:keyPressed(key)
       if key == "return" then
         if poke[self.searchstr] then
           local follower = poke[self.searchstr]
-          addUndo{"follow_change",self.follow.sprite,self.follow.x,self.follow.y,self.follow.dir,self.follow.data}
+          addUndo{reason = "follow_change",sprite = self.follow.sprite,x = self.follow.x,y = self.follow.y,dir = self.follow.dir,data = self.follow.data}
           removeFromTable(self.objects, self.follow)
           self.follow = Object:new("pokemon", {sprite=follower.sprite or follower.name, x=self.follow.x, y=self.follow.y, dir=self.follow.dir, layer=4, data=copyTable(follower)})
           table.insert(self.objects, self.follow)

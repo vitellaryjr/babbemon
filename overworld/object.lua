@@ -12,7 +12,7 @@ function Object:new(type, o)
   o.layer = o.layer or 0
   o.pivot = o.pivot or {x = 0.5, y = 0.5}
   o.push = o.push or false
-  o.data = o.data
+  o.data = o.data --data is the pokemon's values from pokemon.lua
 
   o.draw = {
     x = o.draw and o.draw.x or o.x,
@@ -123,7 +123,7 @@ function Object:canMove(x,y)
   for _,thing in ipairs(stuff) do
     if thing.push then
       if thing:canMove(thing.x+dx,thing.y+dy) then
-        addUndo{"update",thing,thing.x,thing.y,1}
+        addUndo{reason = "update",unit = thing,x = thing.x,y = thing.y,dir = 1}
         thing:move(thing.x+dx,thing.y+dy)
       else
         result = false
