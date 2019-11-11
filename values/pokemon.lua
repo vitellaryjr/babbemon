@@ -553,6 +553,32 @@ poke = {
     desc = "they can be found in old ruins, crawling between the cracks in the walls.",
   },
   {
+    name = "spid",
+    types = {"bug","poison"},
+    gendm = 0.8,
+    gendf = 0,
+    gaypb = 0.5,
+    catch = 180,
+    expy = 72,
+    able = {},
+    egg = {"insect"},
+    growth = "medium_fast",
+    desc = "a determined hunter that wants to become strong like its siblings. they train all the time, practicing accuracy with its poison.",
+  },
+  {
+    name = "prime",
+    types = {"bug","poison"},
+    gendm = 0.8,
+    gendf = 0.2,
+    gaypb = 0.5,
+    catch = 180,
+    expy = 72,
+    able = {},
+    egg = {"insect"},
+    growth = "medium_fast",
+    desc = "after much practice, their aim is now deadly, because now they shoot a lot more poison. their aim is alright but it's really just the spray that gets you."
+  },
+  {
     name = "magnemite",
     types = {"steel","electric"},
     gendm = 0.5,
@@ -626,7 +652,7 @@ poke = {
     types = {"normal"},
     gendm = 0,
     gendf = 1,
-    gaypb = "?", --idk if temmie's gay or not so remind me to change this later
+    gaypb = 0.05, --best we could find was mention of a "hot guy" on twitter so we'll go with this to be safe
     catch = 45,
     expy = 65,
     able = {},
