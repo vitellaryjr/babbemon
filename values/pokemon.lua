@@ -647,6 +647,23 @@ poke = {
     desc = "it has unstable genes, allowing it to evolve into whatever its surroundings mold it into. very accepting of others.",
   },
   {
+    name = "wooloo",
+    types = {"normal"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0.1,
+    catch = 255,
+    expy = 122,
+    able = {
+      first = "fluffy",
+      second = "run_away",
+      hidden = "bulletproof"
+    },
+    egg = {"field"},
+    growth = "medium_fast",
+    desc = "very soff,,, likes to roll around because its adorable. long lost cousin of flof"
+  },
+  {
     name = "temmi!!!",
     sprite = "temmi",
     types = {"normal"},
