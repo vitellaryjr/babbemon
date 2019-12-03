@@ -795,6 +795,23 @@ poke = {
     desc = "it can eject its internal organs to attack others. it has become a tradition to yeet pyukumuku back into their homes after a storm, where they wash ashore. szoob's favorite pokemon",
   },
   {
+    name = "pincurchin",
+    types = {"electric"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 75,
+    expy = 152,
+    able = {
+      first = "lightning_rod",
+      second = "lightning_rod",
+      hidden = "electric_surge",
+    },
+    egg = {"aquatic","amorphous"},
+    growth = "medium_fast",
+    desc = "a case of the mandella effect has caused all the people in the Galar region to think this is a water type pokemon. however, it is not. it stores electricity in its spines and shoots it out at enemies. szoob's second favourite pokemon.",
+  },
+  {
     name = "morelull",
     types = {"grass","fairy"},
     gendm = 0.5,
