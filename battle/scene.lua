@@ -10,6 +10,8 @@ function scene:load()
 
   self.searching = false
   self.searchstr = ""
+  
+  self.temtime = 0
 
   self.spritetest = false
   self.test_starttime = 0
@@ -67,6 +69,7 @@ function scene:draw(dt)
       love.graphics.draw(p1draw,round(600-p1w/2),round(150-5*p1h/8))
     end
   else
+    love.graphics.draw(sprites["battle/wat"],535,51)
     print("this opponent failed: "..(self.poke1shiny and "shiny " or "")..self.poke1.name)
   end
   if p2draw then
@@ -74,7 +77,23 @@ function scene:draw(dt)
       love.graphics.draw(p2draw,round(175-p2w/2),round(250-5*p2h/8))
     end
   else
+    love.graphics.draw(sprites["battle/wat"],110,151)
     print("this player failed: "..(self.poke2shiny and "shiny " or "")..self.poke2.name)
+  end
+  
+  if self.poke1.name == "temmi!!!" then
+    local dx,dy = love.math.random(-1,1),love.math.random(-1,1)
+    if self.temtime ~= 0 then
+      dx = dx+math.floor(((love.timer.getTime()/self.temtime)-1)*200000)
+    end
+    love.graphics.draw(sprites["battle/temmi_face_f"],529+dx,57+dy)
+  end
+  if self.poke2.name == "temmi!!!" then
+    local dx,dy = love.math.random(-1,1),love.math.random(-1,1)
+    if self.temtime ~= 0 then
+      dx = dx-math.floor(((love.timer.getTime()/self.temtime)-1)*200000)
+    end
+    love.graphics.draw(sprites["battle/temmi_face_b"],108+dx,160+dy)
   end
   
   local texty = 250
@@ -116,11 +135,32 @@ function scene:keyPressed(key)
       if poke[self.searchstr] then
         self.poke1 = poke[self.searchstr]
         self.poke2 = poke[self.searchstr]
+        if self.searchstr == "temmi!!!" then
+          self.temtime = love.timer.getTime()
+        else
+          self.temtime = 0
+        end
         self.searchstr = ""
         self.searching = false
       end
     elseif not keydown["ctrl"] then
-      if key == "space" then key = " " end
+      local specialkeys = {
+        space = " ",
+        lshift = "",
+        rshift = "",
+        lctrl = "",
+        rctrl = "",
+        lalt = "",
+        ralt = "",
+      }
+      for i=0,9 do
+        specialkeys["kp"..i] = tostring(i)
+      end
+      key = specialkeys[key] or key
+      if keydown["shift"] then
+        local shifts = {"!","@","#","$","%","^","&","*"}
+        key = shifts[tonumber(key)] or key
+      end
       self.searchstr = self.searchstr..key
     end
   else
@@ -135,6 +175,11 @@ function scene:keyPressed(key)
       end
       self.poke1 = newpoke1
       self.poke2 = newpoke2
+      if self.poke1.name == "temmi!!!" or self.poke2.name == "temmi!!!" then
+        self.temtime = love.timer.getTime()
+      else
+        self.temtime = 0
+      end
       if keydown["ctrl"] then
         self.poke1shiny = love.math.random(1,4096) == 1
         self.poke2shiny = love.math.random(1,4096) == 1

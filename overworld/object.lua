@@ -5,12 +5,14 @@ function Object:new(type, o)
 
   o.type = type
   o.sprite = o.sprite
+  o.name = o.name or o.sprite
   o.x = o.x or 0
   o.y = o.y or 0
   o.dir = o.dir or 1
   o.layer = o.layer or 0
   o.pivot = o.pivot or {x = 0.5, y = 0.5}
   o.push = o.push or false
+  o.data = o.data --data is the pokemon's values from pokemon.lua
 
   o.draw = {
     x = o.draw and o.draw.x or o.x,
@@ -20,6 +22,13 @@ function Object:new(type, o)
     shake = o.draw and o.draw.shake or 0,
     rotation = o.draw and o.draw.rotation or (o.dir-1)*45
   }
+  
+  if o.name == "temmi" then
+    o.temface = {
+      x = o.draw.x,
+      y = o.draw.y
+    }
+  end
 
   setmetatable(o, self)
   self.__index = self
@@ -28,25 +37,40 @@ end
 
 -- this system is really placeholder until we figure out what works best for this game
 function Object:getSprite()
+  local sprite
   if self.type == "pokemon" then
-    if overworld.shiny or love.math.random(1,4096) == 69 then
-      return sprites["overworld/pokemon/shiny/" .. self.sprite] or sprites["overworld/wat_shiny"]
+    if overworld.shiny then
+      sprite = sprites["overworld/pokemon/shiny/" .. self.sprite]
+      if self.data.anim then
+        sprite = sprites["overworld/pokemon/shiny/" .. self.sprite .. "_" .. anim_stage]
+      end
     else
-      return sprites["overworld/pokemon/" .. self.sprite] or sprites["overworld/wat"]
+      sprite = sprites["overworld/pokemon/" .. self.sprite]
+      if self.data.anim then
+        sprite = sprites["overworld/pokemon/" .. self.sprite .. "_" .. anim_stage]
+      end
     end
   elseif self.type == "trainer" then
     if self.dir == 1 then
-      return sprites["overworld/"..self.sprite.."_right"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_right"]
     elseif self.dir == 2 or self.dir == 3 or self.dir == 4 then
-      return sprites["overworld/"..self.sprite.."_down"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_down"]
     elseif self.dir == 5 then
-      return sprites["overworld/"..self.sprite.."_left"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_left"]
     elseif self.dir == 6 or self.dir == 7 or self.dir == 8 then
-      return sprites["overworld/"..self.sprite.."_up"]
+      sprite = sprites["overworld/trainers/"..self.sprite.."_up"]
     end
   else
-    return sprites["overworld/objects/" .. (self.sprite or self.type)] or sprites["overworld/wat"]
+    sprite = sprites["overworld/objects/" .. (self.sprite or self.type)]
   end
+  if not sprite then
+    if self.shiny then
+      sprite = sprites["overworld/wat_shiny"]
+    else
+      sprite = sprites["overworld/wat"]
+    end
+  end
+  return sprite
 end
 
 function Object:move(x, y, instant)
@@ -57,6 +81,9 @@ function Object:move(x, y, instant)
     self.draw.y = self.y
   else
     addTween(tween.new(0.1, self.draw, {x = self.x, y = self.y}), "move:" .. tostring(self))
+    if self.name == "temmi" then
+      addTween(tween.new(0.12, self.temface, {x = self.x, y = self.y}), "move face:" .. tostring(self))
+    end
   end
   -- silly shake effect just for fun
   for _,grass in ipairs(getObjectsOnTile(x, y, {type="tall_grass"})) do
@@ -66,6 +93,7 @@ function Object:move(x, y, instant)
 end
 
 -- i know you dont want this but just for fun: bab style rotation
+-- jokes on you i actually do want this, sometimes
 function Object:rotate(dir, instant, dont)
   self.dir = dir
   if dont then return end
@@ -95,7 +123,7 @@ function Object:canMove(x,y)
   for _,thing in ipairs(stuff) do
     if thing.push then
       if thing:canMove(thing.x+dx,thing.y+dy) then
-        addUndo{"update",thing,thing.x,thing.y,1}
+        addUndo{reason = "update",unit = thing,x = thing.x,y = thing.y,dir = 1}
         thing:move(thing.x+dx,thing.y+dy)
       else
         result = false
