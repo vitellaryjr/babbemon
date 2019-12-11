@@ -973,6 +973,23 @@ poke = {
     desc = "a case of the mandella effect has caused all the people in the Galar region to think this is a water type pokemon. however, it is not. it stores electricity in its spines and shoots it out at enemies. szoob's second favourite pokemon.",
   },
   {
+    name = "snom",
+    types = {"ice","bug"},
+    gendm = 0.5,
+    gendf = 0.5,
+    gaypb = 0,
+    catch = 190,
+    expy = 37,
+    able = {
+      first = "shield_dust",
+      second = "shield_dust",
+      hidden = "ice_scales",
+    },
+    egg = {"insect"},
+    growth = "medium_fast",
+    desc = "fwoomf. snomnom, snomnomnom.",
+  },
+  {
     name = "morelull",
     types = {"grass","fairy"},
     gendm = 0.5,
